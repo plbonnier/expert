@@ -1,2 +1,32 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+@import "~bootstrap/scss/bootstrap";
+// ----------------------variable-----------------------
+$colorBlack: #000000;
+$colorWhite: #ffffff;
+$colorGold: #FFD700;
+$colorSilver: #C0C0C0;
+$fontHeveltica: 'Helvetica', sans-serif;
+$fontVerdana: 'Verdana', sans-serif;
+
+// ----------------------mixin-----------------------
+
+//---------------------global----------------------
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+    list-style: none;
+    scroll-behavior: smooth;
+    text-decoration: none;
+}
+
+// --------------------body-----------------------
+
+body {
+    background-color: $colorBlack;
+    opacity: 90%;
+}
+
+// --------------------offcanva---------------
+.offcanvas-background {
+background-color: $colorSilver;
+}
