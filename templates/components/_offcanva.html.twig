@@ -1,5 +1,5 @@
 <nav class="fixed-top">
-	<button class="btn offcanvas-background" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+	<button class="btn offcanvas-background button-size" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
 		<i class="bi bi-list"></i>
 	</button>
 
@@ -11,46 +11,29 @@
 		<div class="offcanvas-body">
 			<ul class="d-flex flex-column align-items-center justify-content-evenly p-0 h-75">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="">Accueil</a>
+					<a class="nav-link active offcanva-text" aria-current="page" href="">Accueil</a>
 				</li>
-				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link active" href="">Déconnexion</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="">Mon profil</a>
-					</li>
-				{% else %}
-					<li class="nav-item">
-						<a class="nav-link active" href="">Se connecter</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" href="">S'inscrire</a>
-					</li>
-				{% endif %}
-				<li class="nav-item">
-					<a class="nav-link" href="">Tous nos ourang-outans
-						<img src="/build/images/visage1.090dd722.png" class="pic-navbar"></a>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="">Ventes</a>
 				</li>
-				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link" href="">
-							Parrainer un de nos pensionnaires
-						</a>
-					</li>
-				{% endif %}
-				{% if is_granted('ROLE_ADMIN') %}
-					<li class="nav-item">
-						<a class="nav-link" href="">
-							Ajouter un pensionnaire
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="">
-							Accèder à mon tableau de bord
-						</a>
-					</li>
-				{% endif %}
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="">Informations</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="">Vidéos</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="">Photos</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="">Contactez-nous</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link" href="">Prendre rendez-vous</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link" href="">On parle de nous</a>
+				</li>
 			</ul>
 		</div>
 	</div>

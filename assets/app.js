@@ -1,5 +1,5 @@
 
 import './styles/app.scss';
 
-import './bootstrap';
+import './bootstrap.js';
 require('bootstrap');
