@@ -1,2 +1,106 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+@import "~bootstrap/scss/bootstrap";
+// ----------------------variable-----------------------
+$colorBlack: #000000;
+$colorWhite: #ffffff;
+$colorGold: #FFD700;
+$colorSilver: #C0C0C0;
+$colorGreenEmerald: #50C878;
+
+$fontHeveltica: 'Helvetica', sans-serif;
+$fontVerdana: 'Verdana', sans-serif;
+
+$fontSizeTextMob: 1rem;
+$fontSizeTitle: 1.75rem;
+$fontSizeSmallTitleDes: 1.5rem;
+$fontSizeText: 1.25rem;
+
+$fontWeight400: 400;
+$fontWeight600: 600;
+$fontWeight700: 700;
+
+$fontStyleText: normal;
+$lineHeightText: normal;
+
+// ----------------------mixin-----------------------
+
+@mixin myText($fontFamily,
+    $fontColorText,
+    $fontSize,
+    $fontStyle,
+    $fontWeight,
+    $lineHeight) {
+    font-family: $fontFamily;
+    color: $fontColorText;
+    font-size: $fontSize;
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    line-height: $lineHeight;
+}
+
+//---------------------global----------------------
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    scroll-behavior: smooth;
+    text-decoration: none;
+}
+
+// --------------------body-----------------------
+
+body {
+    background-color: $colorBlack;
+    opacity: 90%;
+}
+
+// --------------------offcanva---------------
+.offcanvas-background {
+background-color: $colorSilver;
+}
+
+.button-size {
+    // opacity: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    // &:hover {
+    //     background-color: $colorBlack;
+    // }
+}
+
+.bi-list{
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
+    font-weight: 600;
+    color: $colorSilver;
+    &:hover {
+        color: $colorGreenEmerald;
+    }
+}
+
+.offcanva-text{
+    @include myText(
+        ($fontHeveltica),
+        ($colorBlack),
+        ($fontSizeSmallTitleDes),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontHeveltica),
+            ($colorBlack),
+            ($fontSizeTitle),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText)
+        );
+    }
+    &:hover {
+        color: $colorGreenEmerald;
+    }
+}
