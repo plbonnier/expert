@@ -21,14 +21,6 @@ class VenteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vente::class);
     }
 
-    public function countVente(): int
-    {
-        return $this->createQueryBuilder('v')
-            ->select('count(v.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
 //    /**
 //     * @return Vente[] Returns an array of Vente objects
 //     */

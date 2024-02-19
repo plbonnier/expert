@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ventes à venir
+	<meta name="Listes des prochaines ventes" content="Liste des ventes futures réalisées par l'experte Perle Do"/>
+
+{% endblock %}
+
+{% block body %}
+	<h1>Ventes à venir</h1>
+	{% for vente in ventes %}
+		<div class="card vente-card mx-auto my-4" loading="lazy">
+			<a href="#" class="link-underline link-underline-opacity-0">
+				<h4 class="card-header h4-vente-a">Vente du {{ vente.dateVente ? vente.dateVente|date('d-m-Y H:i:s') : '' }}</h4>
+			</a>
+			<div class="card-body">
+				<h4 class="card-title h4-vente">{{ vente.nomVente }}
+					chez
+					{{ vente.commissairePriseur }}</h4>
+				<p class="card-text p-vente text-center">{{ vente.adresse }}</p>
+				<p class="card-text p-vente text-center">{{ vente.codePostal }}
+					{{ vente.ville }}</p>
+				<p class="card-text p-vente text-center">Exposition des lots le
+					{{ vente.dateExposition ? vente.dateExposition|date('d-m-Y') : '' }}
+					entre
+					{{ vente.heureExposition }}</p>
+                <a class="btn btn-primary" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a>    
+				<a class="btn btn-primary" href="">Voir les lots</a>
+			</div>
+		</div>
+	{% else %}
+		<p>pas de ventes prévues actuellement</p>
+	{% endfor %}
+{% endblock %}

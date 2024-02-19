@@ -11,20 +11,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/vente')]
+#[Route('/ventes')]
 class VenteController extends AbstractController
 {
-    #[Route('/', name: 'app_vente_index', methods: ['GET'])]
-    public function index(VenteRepository $venteRepository): Response
+    #[Route('/anciennes', name: 'app_vente_passe_index', methods: ['GET'])]
+    public function indexPasse(VenteRepository $venteRepository): Response
     {
-        $countVente = $venteRepository->countVente();
-        if ($countVente == 0) {
-            return $this->redirectToRoute('app_home');
-        } else {
-            return $this->render('vente/index.html.twig', [
-            'ventes' => $venteRepository->findAll(),
+        $ventes = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC']);
+            return $this->render('vente/indexPasse.html.twig', [
+            'ventes' => $ventes,
             ]);
-        }
+    }
+
+    #[Route('/prochaines', name: 'app_vente_futur_index', methods: ['GET'])]
+    public function indexFutur(VenteRepository $venteRepository): Response
+    {
+        $ventes = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC']);
+            return $this->render('vente/indexFutur.html.twig', [
+            'ventes' => $ventes,
+            ]);
     }
 
     #[Route('/new', name: 'app_vente_new', methods: ['GET', 'POST'])]

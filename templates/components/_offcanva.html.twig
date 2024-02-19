@@ -12,12 +12,15 @@
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
-			<ul class="d-flex flex-column align-items-center justify-content-evenly p-0 h-75 gap-5">
+			<ul class="d-flex flex-column align-items-center justify-content-evenly p-0 h-75 gap-4">
 				<li class="nav-item">
 					<a class="nav-link active offcanva-text" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 				</li>
 				<li class="nav-item offcanva-text">
-					<a class="nav-link active" href="{{ path('app_vente_index') }}">Ventes</a>
+					<a class="nav-link active" href="{{ path('app_vente_passe_index') }}">Anciennes ventes</a>
+				</li>
+				<li class="nav-item offcanva-text">
+					<a class="nav-link active" href="{{ path('app_vente_futur_index') }}">Prochaines ventes</a>
 				</li>
 				<li class="nav-item offcanva-text">
 					<a class="nav-link active" href="">Informations / Blog</a>
