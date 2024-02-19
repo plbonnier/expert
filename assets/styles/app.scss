@@ -2,7 +2,7 @@
 // ----------------------variable-----------------------
 $colorBlack: #000000;
 $colorWhite: #ffffff;
-$colorGold: #FFD700;
+$colorGold: #c49a6c;
 $colorSilver: #C0C0C0;
 $colorGreenEmerald: #50C878;
 
@@ -13,6 +13,8 @@ $fontSizeTextMob: 1rem;
 $fontSizeTitle: 1.75rem;
 $fontSizeSmallTitleDes: 1.5rem;
 $fontSizeText: 1.25rem;
+$fontSizeFooter: 0.75rem;
+$fontSizeFooterTitle: 1rem;
 
 $fontWeight400: 400;
 $fontWeight600: 600;
@@ -52,6 +54,15 @@ $lineHeightText: normal;
 body {
     background-color: $colorBlack;
     opacity: 90%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+footer {
+    background-color: $colorBlack;
+    opacity: 90%;
+    margin-top: auto;
 }
 
 // --------------------offcanva---------------
@@ -60,13 +71,9 @@ background-color: $colorSilver;
 }
 
 .button-size {
-    // opacity: 50%;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    // &:hover {
-    //     background-color: $colorBlack;
-    // }
 }
 
 .bi-list{
@@ -76,10 +83,11 @@ background-color: $colorSilver;
     font-weight: 600;
     color: $colorSilver;
     &:hover {
-        color: $colorGreenEmerald;
+        color: $colorGold;
     }
 }
 
+// -------------------text-----------------------
 .offcanva-text{
     @include myText(
         ($fontHeveltica),
@@ -101,6 +109,71 @@ background-color: $colorSilver;
         );
     }
     &:hover {
-        color: $colorGreenEmerald;
+        color: $colorGold;
+    }
+}
+
+.h3-footer {
+    @include myText(
+        ($fontVerdana),
+        ($colorSilver),
+        ($fontSizeFooterTitle),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+}
+
+.a-footer {
+    @include myText(
+        ($fontHeveltica),
+        ($colorSilver),
+        ($fontSizeFooter),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+    text-decoration: none;
+    &:hover {
+        color: $colorGold;
+    }
+}
+
+.p-footer {
+    @include myText(
+        ($fontHeveltica),
+        ($colorSilver),
+        ($fontSizeFooter),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+
+}
+
+// -------------------image et icone-----------------------
+.img-footer {
+    width: 18rem;
+    height: auto;
+    object-position: center;
+    padding: 0;
+    margin: 0;
+}
+
+.bi {
+    color: $colorSilver;
+    &:hover {
+        color: $colorGold;
+    }
+}
+
+// -------------------footer-----------------------
+.div-footer1 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5vw;
+    @include media-breakpoint-up(md) {
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
