@@ -30,34 +30,7 @@
 	</body>
 	<footer>
 		{% block footer %}
-			<div class="div-footer1">
-                <img src="{{ asset('build/images/logo.png') }}" alt="logo" class="img-footer"/>
-				<div class="d-flex flex-column justify-content-start gap-1">
-					<h3 class="h3-footer">Plan du site</h3>
-					<a href="" class="a-footer">Accueil</a>
-					<a href="" class="a-footer">Informations</a>
-					<a href="" class="a-footer">Vidéos</a>
-					<a href="" class="a-footer">Photos</a>
-					<a href="" class="a-footer">Contactez-nous</a>
-					<a href="" class="a-footer">Prendre rendez-vous</a>
-					<a href="" class="a-footer">On parle de nous</a>
-					<a href="" class="a-footer mb-3" target="_blank">Mentions légales</a>
-				</div>
-				<div class="d-flex flex-column justify-content-start gap-1">
-					<h3 class="h3-footer">Informations</h3>
-					<p class="p-footer m-0">Adresse : 75/77 avenue Victor Hugo</p>
-					<p class="p-footer m-0">69160 TASSIN LA DEMI-LUNE</p>
-					<p class="p-footer m-0">Téléphone : 06 13 57 43 37</p>
-					<p class="p-footer mb-3">Email : perlepierredo@gmail.com</p>
-                    <div class="d-flex justify-content-around">
-                        <a href="https://www.facebook.com/perle.pierre/" class="mb-3" target="_blank"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/do_perle_8888/" class="mb-3" target="_blank"><i class="bi bi-instagram"></i></a>
-                        <a href="" class="mb-3" target="_blank"><i class="bi bi-linkedin"></i></a>
-                        <a href="" class="mb-3" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                        <a href="" class="mb-3" target="_blank"><i class="bi bi-tiktok"></i></a>
-                    </div>
-				</div>
-			</div>
+			{% include 'components/_footer.html.twig' %}
 		{% endblock %}
 	</html>
 </html>

@@ -2,7 +2,7 @@
 // ----------------------variable-----------------------
 $colorBlack: #000000;
 $colorWhite: #ffffff;
-$colorGold: #FFD700;
+$colorGold: #c49a6c;
 $colorSilver: #C0C0C0;
 $colorGreenEmerald: #50C878;
 
@@ -83,7 +83,7 @@ background-color: $colorSilver;
     font-weight: 600;
     color: $colorSilver;
     &:hover {
-        color: $colorGreenEmerald;
+        color: $colorGold;
     }
 }
 
@@ -109,7 +109,7 @@ background-color: $colorSilver;
         );
     }
     &:hover {
-        color: $colorGreenEmerald;
+        color: $colorGold;
     }
 }
 
