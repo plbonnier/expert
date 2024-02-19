@@ -87,6 +87,9 @@ background-color: $colorSilver;
     }
 }
 
+// .offcanva-text a {
+//     margin-top: 3rem;
+// }
 // -------------------text-----------------------
 .offcanva-text{
     @include myText(
@@ -176,4 +179,10 @@ background-color: $colorSilver;
         flex-direction: row;
         justify-content: space-between;
     }
+}
+
+.return-home{
+    width: auto;
+    height: 3.5rem;
+    cursor: pointer;
 }
