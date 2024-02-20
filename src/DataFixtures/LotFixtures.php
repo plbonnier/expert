@@ -135,7 +135,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'materiaux' => 'or 18 carats',
             'pierre' => 'grenat - 6 carats, diamant - 3 carats',
             'certificat' => true,
-            'photo' => 'collier_2.jpg',
+            'photo' => 'collier_3.jpg',
             'vente' => 'vente_03/05/2024 10:00:00',
         ],
     ];

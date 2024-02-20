@@ -40,11 +40,25 @@ class VenteController extends AbstractController
     }
 
     #[Route('/prochaines', name: 'app_vente_futur_index', methods: ['GET'])]
-    public function indexFutur(VenteRepository $venteRepository): Response
+    public function indexFutur(VenteRepository $venteRepository, LotRepository $lotRepository): Response
     {
         $ventes = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC']);
+        $lots = [];
+        $selectedLots = [];
+
+        foreach ($ventes as $vente) {
+            // Récupérer tous les lots pour la vente courante
+            $lots = $lotRepository->findByVente($vente->getId());
+
+            // Mélanger les lots aléatoirement
+            shuffle($lots);
+
+            // Sélectionner un nombre limité de lots, ici 3
+            $selectedLots[$vente->getId()] = array_slice($lots, 0, 3);
+        }
             return $this->render('vente/indexFutur.html.twig', [
             'ventes' => $ventes,
+            'selectedLots' => $selectedLots
             ]);
     }
 
