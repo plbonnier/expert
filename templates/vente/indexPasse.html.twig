@@ -24,6 +24,11 @@
 					{{ vente.dateExposition ? vente.dateExposition|date('d-m-Y') : '' }}
 					entre
 					{{ vente.heureExposition }}</p>
+
+				{% for lot in lots[vente.id]|rand(0, 3) %}
+					<p class="card-text p-vente">Lot n°
+<p>{{ lot.description }}</p>
+				{% endfor %}
 				<a class="btn btn-primary" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a> 
 			</div>
 		</div>

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Lot;
+use App\Entity\Vente;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,6 +22,19 @@ class LotRepository extends ServiceEntityRepository
         parent::__construct($registry, Lot::class);
     }
 
+
+    public function findRandom(int $limit, Vente $vente): array
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l.id, RANDOM() AS rand')
+            ->where('l.vente = :vente')
+            ->setParameter('vente', $vente)
+            ->orderBy('rand')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Lot[] Returns an array of Lot objects
 //     */

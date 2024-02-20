@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Vente;
 use App\Form\VenteType;
+use App\Repository\LotRepository;
 use App\Repository\VenteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +16,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class VenteController extends AbstractController
 {
     #[Route('/anciennes', name: 'app_vente_passe_index', methods: ['GET'])]
-    public function indexPasse(VenteRepository $venteRepository): Response
+    public function indexPasse(VenteRepository $venteRepository, LotRepository $lotRepository): Response
     {
         $ventes = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC']);
+        $lots = [];
+        foreach ($ventes as $vente) {
+            $lots[$vente->getId()] = $lotRepository->findBy(
+                ['vente' => $vente],
+                [],
+                3
+            );
+        }
             return $this->render('vente/indexPasse.html.twig', [
             'ventes' => $ventes,
+            'lots' => $lots
             ]);
     }
 
