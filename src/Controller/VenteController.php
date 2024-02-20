@@ -20,16 +20,22 @@ class VenteController extends AbstractController
     {
         $ventes = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC']);
         $lots = [];
+        $selectedLots = [];
+
         foreach ($ventes as $vente) {
-            $lots[$vente->getId()] = $lotRepository->findBy(
-                ['vente' => $vente],
-                [],
-                3
-            );
+            // Récupérer tous les lots pour la vente courante
+            $lots = $lotRepository->findByVente($vente->getId());
+
+            // Mélanger les lots aléatoirement
+            shuffle($lots);
+
+            // Sélectionner un nombre limité de lots, ici 3
+            $selectedLots[$vente->getId()] = array_slice($lots, 0, 3);
         }
-            return $this->render('vente/indexPasse.html.twig', [
+
+        return $this->render('vente/indexPasse.html.twig', [
             'ventes' => $ventes,
-            'lots' => $lots
+            'selectedLots' => $selectedLots
             ]);
     }
 

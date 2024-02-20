@@ -23,18 +23,17 @@ class LotRepository extends ServiceEntityRepository
     }
 
 
-    public function findRandom(int $limit, Vente $vente): array
+    public function findRandomLotsByVente(int $venteId, int $limit = 3): array
     {
-        return $this->createQueryBuilder('l')
-            ->select('l.id, RANDOM() AS rand')
-            ->where('l.vente = :vente')
-            ->setParameter('vente', $vente)
-            ->orderBy('rand')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('l')
+            ->andWhere('l.vente = :venteId')
+            ->setParameter('venteId', $venteId)
+            ->orderBy('RAND()')
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
     }
+
 //    /**
 //     * @return Lot[] Returns an array of Lot objects
 //     */
