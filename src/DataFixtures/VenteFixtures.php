@@ -18,7 +18,7 @@ class VenteFixtures extends Fixture
             'adresse' => 'Drouot',
             'codePostal' => '75009',
             'ville' => 'Paris',
-            'nomVente' => 'Vente de printemps',
+            'nomVente' => 'Vente de printemps 2021',
             'dateExposition' => '03/05/2021',
             'heureExposition' => '10h-18h',
         ],
@@ -30,11 +30,10 @@ class VenteFixtures extends Fixture
             'adresse' => 'Rue de Rivoli',
             'codePostal' => '75001',
             'ville' => 'Paris',
-            'nomVente' => 'Vente d\'été',
+            'nomVente' => 'Vente d\'été 2022',
             'dateExposition' => '03/06/2022',
             'heureExposition' => '10h-18h',
         ],
-
         [
             'passe' => true,
             'futur' => false,
@@ -43,7 +42,7 @@ class VenteFixtures extends Fixture
             'adresse' => 'Rue de Rivoli',
             'codePostal' => '75001',
             'ville' => 'Paris',
-            'nomVente' => 'Vente d\'été',
+            'nomVente' => 'Vente d\'été 2023',
             'dateExposition' => '08/07/2023',
             'heureExposition' => '10h-18h',
         ],
@@ -55,7 +54,7 @@ class VenteFixtures extends Fixture
             'adresse' => 'Rue de Rivoli',
             'codePostal' => '75001',
             'ville' => 'Paris',
-            'nomVente' => 'Vente d\'été',
+            'nomVente' => 'Vente d\'été 2024',
             'dateExposition' => '03/05/2024',
             'heureExposition' => '10h-18h',
         ],
@@ -67,7 +66,7 @@ class VenteFixtures extends Fixture
             'adresse' => 'Rue de Rivoli',
             'codePostal' => '75001',
             'ville' => 'Paris',
-            'nomVente' => 'Vente d\'été',
+            'nomVente' => 'Vente d\'été 2024 chez Christie\'s',
             'dateExposition' => '03/05/2024',
             'heureExposition' => '10h-18h',
         ],
@@ -79,7 +78,7 @@ class VenteFixtures extends Fixture
             'adresse' => 'Rue de Rivoli',
             'codePostal' => '75001',
             'ville' => 'Paris',
-            'nomVente' => 'Vente d\'été',
+            'nomVente' => 'Vente d\'été 2024 chez Sotheby\'s',
             'dateExposition' => '08/07/2024',
             'heureExposition' => '10h-18h',
         ]
@@ -101,7 +100,8 @@ class VenteFixtures extends Fixture
             $vente->setDateExposition(new DateTime($venteFixture['dateExposition']));
             $vente->setHeureExposition($venteFixture['heureExposition']);
             $manager->persist($vente);
-            $manager->flush();
+            $this->addReference('vente_' . $venteFixture['dateVente'], $vente);
         }
+        $manager->flush();
     }
 }
