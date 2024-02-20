@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vente{% endblock %}
+
+{% block body %}
+    <h1>Vente</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vente.id }}</td>
+            </tr>
+            <tr>
+                <th>Passe</th>
+                <td>{{ vente.passe ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Futur</th>
+                <td>{{ vente.futur ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>DateVente</th>
+                <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CommissairePriseur</th>
+                <td>{{ vente.commissairePriseur }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ vente.adresse }}</td>
+            </tr>
+            <tr>
+                <th>CodePostal</th>
+                <td>{{ vente.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ vente.ville }}</td>
+            </tr>
+            <tr>
+                <th>NomVente</th>
+                <td>{{ vente.nomVente }}</td>
+            </tr>
+            <tr>
+                <th>DateExposition</th>
+                <td>{{ vente.dateExposition ? vente.dateExposition|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureExposition</th>
+                <td>{{ vente.heureExposition }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vente_index') }}">back to list</a>
+
+    <a href="{{ path('app_vente_edit', {'id': vente.id}) }}">edit</a>
+
+    {{ include('vente/_delete_form.html.twig') }}
+{% endblock %}

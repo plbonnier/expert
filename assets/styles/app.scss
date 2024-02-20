@@ -11,7 +11,9 @@ $fontVerdana: 'Verdana', sans-serif;
 
 $fontSizeTextMob: 1rem;
 $fontSizeTitle: 1.75rem;
-$fontSizeSmallTitleDes: 1.5rem;
+$fontSizeTitleMob: 1.5rem;
+$fontSizeH2: 1.625rem;
+$fontSizeH2Mob: 1.375rem;
 $fontSizeText: 1.25rem;
 $fontSizeFooter: 0.75rem;
 $fontSizeFooterTitle: 1rem;
@@ -87,15 +89,12 @@ background-color: $colorSilver;
     }
 }
 
-// .offcanva-text a {
-//     margin-top: 3rem;
-// }
 // -------------------text-----------------------
 .offcanva-text{
     @include myText(
         ($fontHeveltica),
         ($colorBlack),
-        ($fontSizeSmallTitleDes),
+        ($fontSizeTitleMob),
         ($fontStyleText),
         ($fontWeight400),
         ($lineHeightText)
@@ -151,9 +150,104 @@ background-color: $colorSilver;
         ($fontWeight400),
         ($lineHeightText)
     );
-
+}
+.p-vente {
+    @include myText(
+        ($fontHeveltica),
+        ($colorBlack),
+        ($fontSizeTextMob),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+    text-align: center;
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontHeveltica),
+            ($colorBlack),
+            ($fontSizeText),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText)
+        );
+    }
 }
 
+.h4-vente {
+    @include myText(
+        ($fontHeveltica),
+        ($colorBlack),
+        ($fontSizeText),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+    text-align: center;
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontHeveltica),
+            ($colorBlack),
+            ($fontSizeTitleMob),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText)
+        );
+    }
+}
+
+.h4-vente-a {
+    @include myText(
+        ($fontHeveltica),
+        ($colorBlack),
+        ($fontSizeText),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+    text-align: center;
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontHeveltica),
+            ($colorBlack),
+            ($fontSizeTitleMob),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText)
+        );
+    }
+    &:hover {
+        color: $colorGold;
+    }
+}
+
+h1 {
+    @include myText(
+        ($fontVerdana),
+        ($colorWhite),
+        ($fontSizeTitleMob),
+        ($fontStyleText),
+        ($fontWeight700),
+        ($lineHeightText)
+    );
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontVerdana),
+            ($colorWhite),
+            ($fontSizeTitle),
+            ($fontStyleText),
+            ($fontWeight700),
+            ($lineHeightText)
+        );
+    }
+}
+
+p {
+    font-family : $fontHeveltica;
+}
 // -------------------image et icone-----------------------
 .img-footer {
     width: 18rem;
@@ -185,4 +279,37 @@ background-color: $colorSilver;
     width: auto;
     height: 3.5rem;
     cursor: pointer;
+}
+
+// -------------------ventes-----------------------
+.vente-card {
+    background-color: $colorSilver;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    width: 90%;
+}
+
+.image-card{
+    width: 30%;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    height: auto;
+    @include media-breakpoint-up(md) {
+    width: 20%;
+    border-radius: 2rem;
+    }
+}
+
+.img-vente {
+    border-radius: 1rem;
+    @include media-breakpoint-up(md) {
+    border-radius: 2rem 2rem 0 0;
+    }
+}
+
+.texte-lot-vente{
+    display:none;
+    @include media-breakpoint-up(md) {
+        display: block;
+    }
 }
