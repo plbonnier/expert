@@ -248,6 +248,31 @@ h1 {
 p {
     font-family : $fontHeveltica;
 }
+
+.lien-fond-noir{
+    @include myText(
+        ($fontHeveltica),
+        ($colorWhite),
+        ($fontSizeTextMob),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText)
+    );
+    text-align: center;
+    @include media-breakpoint-up(md) {
+        @include myText(
+            ($fontHeveltica),
+            ($colorWhite),
+            ($fontSizeText),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText)
+        );
+    }
+    &:hover {
+        color: $colorGold;
+    }
+}
 // -------------------image et icone-----------------------
 .img-footer {
     width: 18rem;
@@ -311,5 +336,26 @@ p {
     display:none;
     @include media-breakpoint-up(md) {
         display: block;
+    }
+}
+
+//----------------------accueil-----------------------
+.vente-card-accueil {
+    background-color: $colorSilver;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    width: 90%;
+    @include media-breakpoint-up(md) {
+        width: 45%;
+    }
+}
+.accueil-vente-passe{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2rem;
+    @include media-breakpoint-up(md) {
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

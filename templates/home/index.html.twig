@@ -1,8 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-<h1>Accueil</h1>
-<p>Bienvenue sur le site de la société Perle Do.</p>
+	<h1 class="mt-4 text-center">Accueil</h1>
+	<h2 class="text-center">Bienvenue sur le site de la société Perle Do.</h2>
+
+	<h1>Les 2 dernières ventes</h1>
+    <a href="{{ path('app_vente_passe_index') }}" class="lien-fond-noir">Voir toutes les ventes</a>
+	<div class="accueil-vente-passe">
+		{% for ventePasse in ventesPasses %}
+			<div class="card vente-card-accueil mx-auto mt-2" loading="lazy">
+				<a href="#" class="link-underline link-underline-opacity-0">
+					<h4 class="card-header h4-vente-a">Vente du
+						{{ ventePasse.dateVente ? ventePasse.dateVente|date('d-m-Y') : '' }}</h4>
+				</a>
+				<div class="card-body">
+					<h4 class="card-title h4-vente">{{ ventePasse.nomVente }}
+						chez
+						{{ ventePasse.commissairePriseur }}</h4>
+					<div class="d-flex justify-content-around">
+						{% set lotsVendus = selectedLotsPasses[ventePasse.id] %}
+						{% for lotPasse in lotsVendus %}
+							<div class="card image-card">
+								<img src="{{ asset('build/images/' ~ lotPasse.photo) }}" class="card-img-top img-vente" alt="{{ lotPasse.nom }}">
+								<div class="card-body text-center texte-lot-vente">
+									<a href="#" class="btn btn-primary">Voir le lot</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<a class="btn btn-primary mt-3" href="{{ path('app_vente_show', {'id': ventePasse.id}) }}">Voir les résultats</a>
+				</div>
+			</div>
+		{% else %}
+			<p>
+				Pas de ventes terminées enregistrées actuellement</p>
+		{% endfor %}
+	</div>
 {% endblock %}

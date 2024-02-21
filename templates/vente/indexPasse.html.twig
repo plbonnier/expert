@@ -18,10 +18,6 @@
 				<p class="card-text p-vente">{{ vente.adresse }}</p>
 				<p class="card-text p-vente">{{ vente.codePostal }}
 					{{ vente.ville }}</p>
-				<p class="card-text p-vente">Exposition des lots le
-					{{ vente.dateExposition ? vente.dateExposition|date('d-m-Y') : '' }}
-					entre
-					{{ vente.heureExposition }}</p>
 				<div class="d-flex justify-content-around">
 					{% set lotsPourVente = selectedLots[vente.id] %}
 					{% for lot in lotsPourVente %}
@@ -37,7 +33,7 @@
 						</div>
 					{% endfor %}
 				</div>
-				<a class="btn btn-primary mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a>
+				<a class="btn btn-primary mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir les résultats</a>
 			</div>
 		</div>
 	{% else %}
