@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function index(VenteRepository $venteRepository, LotRepository $lotRepository): Response
     {
         $ventesPasses = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC'], 2);
-        $ventesFutur = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC'], 1);
+        $ventesFutur = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC'], 2);
         $lotsFuturs = [];
         $selectedLotsFutur = [];
         $lotsPasses = [];
