@@ -28,12 +28,12 @@
 								<p class="card-text">
 								Estimation : {{ lot.estimationBasse }} € - {{ lot.estimationHaute }} €<br>
 								Prix de vente : {{ lot.prixVendu }} € (hors frais)</p>
-								<a href="#" class="btn btn-primary">Voir le lot</a>
+								<a href="#" class="btn btn-vente">Voir le lot</a>
 							</div>
 						</div>
 					{% endfor %}
 				</div>
-				<a class="btn btn-primary mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir les résultats</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir les résultats</a>
 			</div>
 		</div>
 	{% else %}

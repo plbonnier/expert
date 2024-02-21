@@ -17,6 +17,8 @@ $fontSizeH2Mob: 1.375rem;
 $fontSizeText: 1.25rem;
 $fontSizeFooter: 0.75rem;
 $fontSizeFooterTitle: 1rem;
+$fontSizeH1: 3rem;
+$fontSizeH1Mob: 2rem;
 
 $fontWeight400: 400;
 $fontWeight600: 600;
@@ -69,7 +71,7 @@ footer {
 
 // --------------------offcanva---------------
 .offcanvas-background {
-background-color: $colorSilver;
+    background-color: $colorSilver;
 }
 
 .button-size {
@@ -78,201 +80,203 @@ background-color: $colorSilver;
     cursor: pointer;
 }
 
-.bi-list{
+.bi-list {
     margin: 0;
     padding: 0;
     font-size: 3rem;
     font-weight: 600;
     color: $colorSilver;
+
     &:hover {
         color: $colorGold;
     }
 }
 
 // -------------------text-----------------------
-.offcanva-text{
-    @include myText(
-        ($fontHeveltica),
+.offcanva-text {
+    @include myText(($fontHeveltica),
         ($colorBlack),
         ($fontSizeTitleMob),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
 
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontHeveltica),
+        @include myText(($fontHeveltica),
             ($colorBlack),
             ($fontSizeTitle),
             ($fontStyleText),
             ($fontWeight600),
-            ($lineHeightText)
-        );
+            ($lineHeightText));
     }
+
     &:hover {
         color: $colorGold;
     }
 }
 
 .h3-footer {
-    @include myText(
-        ($fontVerdana),
+    @include myText(($fontVerdana),
         ($colorSilver),
         ($fontSizeFooterTitle),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
 }
 
 .a-footer {
-    @include myText(
-        ($fontHeveltica),
+    @include myText(($fontHeveltica),
         ($colorSilver),
         ($fontSizeFooter),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-decoration: none;
+
     &:hover {
         color: $colorGold;
     }
 }
 
 .p-footer {
-    @include myText(
-        ($fontHeveltica),
+    @include myText(($fontHeveltica),
         ($colorSilver),
         ($fontSizeFooter),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
 }
+
 .p-vente {
-    @include myText(
-        ($fontHeveltica),
+    @include myText(($fontHeveltica),
         ($colorBlack),
         ($fontSizeTextMob),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-align: center;
+
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontHeveltica),
+        @include myText(($fontHeveltica),
             ($colorBlack),
             ($fontSizeText),
             ($fontStyleText),
             ($fontWeight600),
-            ($lineHeightText)
-        );
+            ($lineHeightText));
     }
 }
 
 .h4-vente {
-    @include myText(
-        ($fontHeveltica),
+    @include myText(($fontVerdana),
         ($colorBlack),
         ($fontSizeText),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-align: center;
+
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontHeveltica),
+        @include myText(($fontVerdana),
             ($colorBlack),
             ($fontSizeTitleMob),
             ($fontStyleText),
             ($fontWeight600),
-            ($lineHeightText)
-        );
+            ($lineHeightText));
     }
 }
 
 .h4-vente-a {
-    @include myText(
-        ($fontHeveltica),
+    @include myText(($fontVerdana),
         ($colorBlack),
         ($fontSizeText),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-align: center;
+
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontHeveltica),
+        @include myText(($fontVerdana),
             ($colorBlack),
             ($fontSizeTitleMob),
             ($fontStyleText),
             ($fontWeight600),
-            ($lineHeightText)
-        );
+            ($lineHeightText));
     }
+
     &:hover {
         color: $colorGold;
     }
 }
 
 h1 {
-    @include myText(
-        ($fontVerdana),
+    @include myText(($fontVerdana),
         ($colorWhite),
-        ($fontSizeTitleMob),
+        ($fontSizeH1Mob),
         ($fontStyleText),
         ($fontWeight700),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-align: center;
     text-decoration: underline;
     margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontVerdana),
+        @include myText(($fontVerdana),
             ($colorWhite),
-            ($fontSizeTitle),
+            ($fontSizeH1),
             ($fontStyleText),
             ($fontWeight700),
-            ($lineHeightText)
-        );
+            ($lineHeightText));
     }
 }
 
 p {
-    font-family : $fontHeveltica;
+    font-family: $fontHeveltica;
 }
 
-.lien-fond-noir{
-    @include myText(
-        ($fontHeveltica),
+.lien-fond-noir {
+    @include myText(($fontHeveltica),
         ($colorWhite),
         ($fontSizeTextMob),
         ($fontStyleText),
         ($fontWeight400),
-        ($lineHeightText)
-    );
+        ($lineHeightText));
     text-align: center;
+
     @include media-breakpoint-up(md) {
-        @include myText(
-            ($fontHeveltica),
+        @include myText(($fontHeveltica),
             ($colorWhite),
             ($fontSizeText),
             ($fontStyleText),
             ($fontWeight600),
-            ($lineHeightText)
-        );
-    }
-    &:hover {
-        color: $colorGold;
+            ($lineHeightText));
+
+        &:hover {
+            color: $colorGold;
+        }
     }
 }
+
+.h2-accueil {
+    @include myText(($fontVerdana),
+        ($colorWhite),
+        ($fontSizeH2Mob),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText));
+    text-align: center;
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-up(md) {
+        @include myText(($fontVerdana),
+            ($colorWhite),
+            ($fontSizeH2),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText));
+    }
+}
+
 // -------------------image et icone-----------------------
 .img-footer {
     width: 18rem;
@@ -284,6 +288,7 @@ p {
 
 .bi {
     color: $colorSilver;
+
     &:hover {
         color: $colorGold;
     }
@@ -294,13 +299,14 @@ p {
     display: flex;
     flex-direction: column;
     margin: 0 5vw;
+
     @include media-breakpoint-up(md) {
         flex-direction: row;
         justify-content: space-between;
     }
 }
 
-.return-home{
+.return-home {
     width: auto;
     height: 3.5rem;
     cursor: pointer;
@@ -314,26 +320,29 @@ p {
     width: 90%;
 }
 
-.image-card{
+.image-card {
     width: 30%;
     border-radius: 1rem;
     box-shadow: 0 0 0.5rem 0 $colorGold;
     height: auto;
+
     @include media-breakpoint-up(md) {
-    width: 20%;
-    border-radius: 2rem;
+        width: 20%;
+        border-radius: 2rem;
     }
 }
 
 .img-vente {
     border-radius: 1rem;
+
     @include media-breakpoint-up(md) {
-    border-radius: 2rem 2rem 0 0;
+        border-radius: 2rem 2rem 0 0;
     }
 }
 
-.texte-lot-vente{
-    display:none;
+.texte-lot-vente {
+    display: none;
+
     @include media-breakpoint-up(md) {
         display: block;
     }
@@ -345,17 +354,58 @@ p {
     border-radius: 2rem;
     box-shadow: 0 0 0.5rem 0 $colorGold;
     width: 90%;
+
     @include media-breakpoint-up(md) {
         width: 45%;
     }
 }
-.accueil-vente-passe{
+
+.accueil-vente-passe {
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: 2rem;
+
     @include media-breakpoint-up(md) {
         flex-direction: row;
         justify-content: space-between;
+    }
+}
+
+//-------------bouton-----------------------
+.btn-vente3 {
+    background-color: $colorBlack;
+    color: $colorSilver;
+
+    &:hover {
+        background-color: $colorGold;
+        color: $colorBlack;
+    }
+}
+.btn-vente2 {
+    background-color: $colorSilver;
+    color: $colorBlack;
+
+    &:hover {
+        background-color: $colorGold;
+        color: $colorBlack;
+    }
+}
+.btn-vente {
+    background-color: $colorWhite;
+    color: $colorBlack;
+
+    &:hover {
+        background-color: $colorGold;
+        color: $colorBlack;
+    }
+}
+.btn-vente4 {
+    background-color: $colorSilver;
+    color: $colorWhite;
+
+    &:hover {
+        background-color: $colorGold;
+        color: $colorBlack;
     }
 }
