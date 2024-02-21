@@ -266,6 +266,7 @@ p {
         ($lineHeightText));
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 
     @include media-breakpoint-up(md) {
         @include myText(($fontVerdana),
@@ -372,25 +373,20 @@ p {
     }
 }
 
+.image-card-accueil {
+    width: 30%;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    height: auto;
+
+    @include media-breakpoint-up(md) {
+        width: 30%;
+        border-radius: 2rem;
+    }
+}
+
 //-------------bouton-----------------------
-.btn-vente3 {
-    background-color: $colorBlack;
-    color: $colorSilver;
 
-    &:hover {
-        background-color: $colorGold;
-        color: $colorBlack;
-    }
-}
-.btn-vente2 {
-    background-color: $colorSilver;
-    color: $colorBlack;
-
-    &:hover {
-        background-color: $colorGold;
-        color: $colorBlack;
-    }
-}
 .btn-vente {
     background-color: $colorWhite;
     color: $colorBlack;
@@ -400,12 +396,28 @@ p {
         color: $colorBlack;
     }
 }
-.btn-vente4 {
-    background-color: $colorSilver;
-    color: $colorWhite;
 
-    &:hover {
-        background-color: $colorGold;
-        color: $colorBlack;
-    }
+.btn {
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+        -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+    transition: transform 0.5s;
+}
+
+.btn:hover {
+    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+        -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+        0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+        0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+    transform: translateY(0.5em);
+}
+
+.btn svg {
+    transition: transform 0.5s;
+}
+
+.btn:hover svg {
+    transform: scale(0.9);
+    fill: #333333;
 }

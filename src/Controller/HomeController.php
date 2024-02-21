@@ -14,22 +14,38 @@ class HomeController extends AbstractController
     public function index(VenteRepository $venteRepository, LotRepository $lotRepository): Response
     {
         $ventesPasses = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC'], 2);
-        $lots = [];
+        $ventesFutur = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC'], 1);
+        $lotsFuturs = [];
+        $selectedLotsFutur = [];
+        $lotsPasses = [];
         $selectedLotsPasses = [];
 
-        foreach ($ventesPasses as $vente) {
+        foreach ($ventesPasses as $ventePasses) {
             // Récupérer tous les lots pour la vente courante
-            $lots = $lotRepository->findByVente($vente->getId());
+            $lotsPasses = $lotRepository->findByVente($ventePasses->getId());
 
             // Mélanger les lots aléatoirement
-            shuffle($lots);
+            shuffle($lotsPasses);
 
             // Sélectionner un nombre limité de lots, ici 3
-            $selectedLotsPasses[$vente->getId()] = array_slice($lots, 0, 2);
+            $selectedLotsPasses[$ventePasses->getId()] = array_slice($lotsPasses, 0, 2);
+        }
+
+        foreach ($ventesFutur as $venteFutur) {
+            // Récupérer tous les lots pour la vente courante
+            $lotsFuturs = $lotRepository->findByVente($venteFutur->getId());
+
+            // Mélanger les lots aléatoirement
+            shuffle($lotsFuturs);
+
+            // Sélectionner un nombre limité de lots, ici 3
+            $selectedLotsFutur[$venteFutur->getId()] = array_slice($lotsFuturs, 0, 2);
         }
         return $this->render('home/index.html.twig', [
             'ventesPasses' => $ventesPasses,
-            'selectedLotsPasses' => $selectedLotsPasses
+            'ventesFutur' => $ventesFutur,
+            'selectedLotsPasses' => $selectedLotsPasses,
+            'selectedLotsFutur' => $selectedLotsFutur
             ]);
     }
 }

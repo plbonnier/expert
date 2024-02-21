@@ -9,7 +9,7 @@
 		<div class="card vente-card mx-auto mt-4 mb-2" loading="lazy">
 			<a href="#" class="link-underline link-underline-opacity-0">
 				<h4 class="card-header h4-vente-a">Vente du
-					{{ vente.dateVente ? vente.dateVente|date('d-m-Y H:i:s') : '' }}</h4>
+					{{ vente.dateVente ? vente.dateVente|date('d-m-Y') : '' }}</h4>
 			</a>
 			<div class="card-body">
 				<h4 class="card-title h4-vente">{{ vente.nomVente }}
