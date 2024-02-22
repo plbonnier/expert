@@ -92,6 +92,17 @@ footer {
     }
 }
 
+nav {
+    width: 5%;
+}
+
+.logo-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
 // -------------------text-----------------------
 .offcanva-text {
     @include myText(($fontHeveltica),
@@ -166,6 +177,29 @@ footer {
     }
 }
 
+.p-blog {
+        @include myText(($fontHeveltica),
+            ($colorWhite),
+            ($fontSizeTextMob),
+            ($fontStyleText),
+            ($fontWeight400),
+            ($lineHeightText));
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+    
+        @include media-breakpoint-up(md) {
+            @include myText(($fontHeveltica),
+                ($colorWhite),
+                ($fontSizeText),
+                ($fontStyleText),
+                ($fontWeight600),
+                ($lineHeightText));
+        }
+}
+
 .h4-vente {
     @include myText(($fontVerdana),
         ($colorBlack),
@@ -178,6 +212,25 @@ footer {
     @include media-breakpoint-up(md) {
         @include myText(($fontVerdana),
             ($colorBlack),
+            ($fontSizeTitleMob),
+            ($fontStyleText),
+            ($fontWeight600),
+            ($lineHeightText));
+    }
+}
+
+.h4-blog {
+    @include myText(($fontVerdana),
+        ($colorWhite),
+        ($fontSizeText),
+        ($fontStyleText),
+        ($fontWeight400),
+        ($lineHeightText));
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+        @include myText(($fontVerdana),
+            ($colorWhite),
             ($fontSizeTitleMob),
             ($fontStyleText),
             ($fontWeight600),
@@ -420,4 +473,88 @@ p {
 .btn:hover svg {
     transform: scale(0.9);
     fill: #333333;
+}
+
+//---------------------------------card blog accueil--------------------------------
+.card2 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    padding: 2rem;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+    @include media-breakpoint-up(md) {
+        width: 45%;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    color: $colorWhite;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.content .btn {
+    color: $colorBlack;
+    text-decoration: none;
+    padding: 0.625rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(-45deg, #f89b29 0%, $colorGold 100%);
+    border-radius: 0.313rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+}
+
+.card2::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0.313rem;
+    height: 100%;
+    background: linear-gradient(-45deg, #f89b29 0%, $colorGold 100%);
+    z-index: -1;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card2:hover::before {
+    width: 100%;
+}
+
+.card2:hover {
+    box-shadow: none;
+}
+
+.card2:hover .btn {
+    color: #212121;
+    background: $colorWhite;
+}
+
+.content .btn:hover {
+    outline: 2px solid $colorWhite;
+    background: transparent;
+    color: $colorWhite;
+}
+
+.content .btn:active {
+    box-shadow: none;
+}
+
+.accueil-blog {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: start;
+    @include media-breakpoint-up(md) {
+        flex-direction: row;
+        justify-content: space-around;
+    }
 }

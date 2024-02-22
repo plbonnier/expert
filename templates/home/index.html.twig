@@ -4,48 +4,15 @@
 {% endblock %}
 
 {% block body %}
+	
 	<h1>Accueil</h1>
 	<h2 class="h2-accueil">Bienvenue sur le site de la société Perle Do.</h2>
-
-	<h2 class="h2-accueil">Les 2 dernières ventes</h2>
-	<a href="{{ path('app_vente_passe_index') }}" class="lien-fond-noir link-underline link-underline-opacity-0">Voir toutes les ventes</a>
-	<div class="accueil-vente-passe">
-		{% for ventePasse in ventesPasses %}
-			<div class="card vente-card-accueil mx-auto mt-2" loading="lazy">
-				<a href="#" class="link-underline link-underline-opacity-0">
-					<h4 class="card-header h4-vente-a">Vente du
-						{{ ventePasse.dateVente ? ventePasse.dateVente|date('d-m-Y') : '' }}</h4>
-				</a>
-				<div class="card-body">
-					<h4 class="card-title h4-vente">{{ ventePasse.nomVente }}
-						chez
-						{{ ventePasse.commissairePriseur }}</h4>
-					<div class="d-flex justify-content-around">
-						{% set lotsVendus = selectedLotsPasses[ventePasse.id] %}
-						{% for lotPasse in lotsVendus %}
-							<div class="card image-card-accueil">
-								<img src="{{ asset('build/images/' ~ lotPasse.photo) }}" class="card-img-top img-vente" alt="{{ lotPasse.nom }}">
-								<div class="card-body text-center texte-lot-vente">
-									<a href="#" class="btn btn-vente">Voir le lot</a>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': ventePasse.id}) }}">Voir les résultats</a>
-
-				</div>
-			</div>
-		{% else %}
-			<p>
-				Pas de ventes terminées enregistrées actuellement</p>
-		{% endfor %}
-	</div>
-
-	<h2 class="h2-accueil">Futurs ventes</h2>
-	<a href="{{ path('app_vente_futur_index') }}" class="lien-fond-noir link-underline link-underline-opacity-0">Voir les ventes prévues</a>
+	{# ---------------------------------futur ventes--------------------------------- #}
+	<h2 class="h2-accueil">Prochaines ventes</h2>
+	<a href="{{ path('app_vente_futur_index') }}" class="lien-fond-noir link-underline link-underline-opacity-0 mb-2">Voir les ventes prévues</a>
 	<div class="accueil-vente-passe">
 		{% for venteFutur in ventesFutur %}
-			<div class="card vente-card-accueil mx-auto my-4" loading="lazy">
+			<div class="card vente-card-accueil mx-auto">
 				<a href="#" class="link-underline link-underline-opacity-0">
 					<h4 class="card-header h4-vente-a">Vente du
 						{{ venteFutur.dateVente ? venteFutur.dateVente|date('d-m-Y à H:i') : '' }}</h4>
@@ -62,9 +29,9 @@
 						{% set lotsPourVenteFutur = selectedLotsFutur[venteFutur.id] %}
 						{% for lotFutur in lotsPourVenteFutur %}
 							<div class="card image-card-accueil">
-								<img src="{{ asset('build/images/' ~ lotFutur.photo) }}" class="card-img-top img-vente" alt="{{ lotFutur.nom }}">
+								<img src="{{ asset('build/images/' ~ lotFutur.photo) }}" class="card-img-top img-vente" loading="lazy" alt="{{ lotFutur.nom }}">
 								<div class="card-body text-center texte-lot-vente">
-									<h4 class="card-title h4-vente">{{ lotFutur.nom }}</h5>
+									<h4 class="card-title h4-vente">{{ lotFutur.nom }}</h4>
 									<p class="card-text p-footer">
 										Estimation :
 										{{ lotFutur.estimationBasse }}
@@ -83,4 +50,59 @@
 			<p>pas de ventes prévues actuellement</p>
 		{% endfor %}
 	</div>
+	{# ----------------------------ventes anciennes-------------------------------- #}
+	<h2 class="h2-accueil">Les 2 dernières ventes</h2>
+	<a href="{{ path('app_vente_passe_index') }}" class="lien-fond-noir link-underline link-underline-opacity-0 mb-2">Voir toutes les ventes</a>
+	<div class="accueil-vente-passe">
+		{% for ventePasse in ventesPasses %}
+			<div class="card vente-card-accueil mx-auto mt-2">
+				<a href="#" class="link-underline link-underline-opacity-0">
+					<h4 class="card-header h4-vente-a">Vente du
+						{{ ventePasse.dateVente ? ventePasse.dateVente|date('d-m-Y') : '' }}</h4>
+				</a>
+				<div class="card-body">
+					<h4 class="card-title h4-vente">{{ ventePasse.nomVente }}
+						chez
+						{{ ventePasse.commissairePriseur }}</h4>
+					<div class="d-flex justify-content-around">
+						{% set lotsVendus = selectedLotsPasses[ventePasse.id] %}
+						{% for lotPasse in lotsVendus %}
+							<div class="card image-card-accueil">
+								<img src="{{ asset('build/images/' ~ lotPasse.photo) }}" class="card-img-top img-vente" loading="lazy" alt="{{ lotPasse.nom }}">
+								<div class="card-body text-center texte-lot-vente">
+									<a href="#" class="btn btn-vente">Voir le lot</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': ventePasse.id}) }}">Voir les résultats</a>
+
+				</div>
+			</div>
+		{% else %}
+			<p>
+				Pas de ventes terminées enregistrées actuellement</p>
+		{% endfor %}
+	</div>
+	{# ---------------------------blog-------------------------------- #}
+	<h2 class="h2-accueil">Les 2 dernières publications</h2>
+	<a href="" class="lien-fond-noir link-underline link-underline-opacity-0 mb-2">Voir le blog</a>
+	<div class="accueil-blog">
+		{% for article in articles %}
+			<div class="card2 mx-auto">
+				<div class="content">
+					<h4 class="heading card-header h4-blog">
+						{{ article.titre }}</h4>
+					<img src="{{ asset('build/images/' ~ article.photo) }}" class="card-img-top img-blog-accueil" loading="lazy" alt="{{ article.description }}">
+					<p class="p-blog">{{ article.article }}</p>
+					<button class="btn">Voir cet article</button>
+				</div>
+			</div>
+					{% else %}
+			<p>
+				Pas d'article actuellement</p>
+		{% endfor %}
+	</div>
+
+
 {% endblock %}
