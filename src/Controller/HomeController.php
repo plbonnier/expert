@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BlogRepository;
 use App\Repository\LotRepository;
 use App\Repository\VenteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(VenteRepository $venteRepository, LotRepository $lotRepository): Response
-    {
+    public function index(
+        VenteRepository $venteRepository,
+        LotRepository $lotRepository,
+        BlogRepository $blogRepository
+    ): Response {
         $ventesPasses = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC'], 2);
         $ventesFutur = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC'], 2);
+        $articles = $blogRepository->findBy([], ['date' => 'DESC'], 2);
         $lotsFuturs = [];
         $selectedLotsFutur = [];
         $lotsPasses = [];
@@ -45,7 +50,8 @@ class HomeController extends AbstractController
             'ventesPasses' => $ventesPasses,
             'ventesFutur' => $ventesFutur,
             'selectedLotsPasses' => $selectedLotsPasses,
-            'selectedLotsFutur' => $selectedLotsFutur
+            'selectedLotsFutur' => $selectedLotsFutur,
+            'articles' => $articles
             ]);
     }
 }
