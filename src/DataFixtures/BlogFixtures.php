@@ -85,13 +85,13 @@ class BlogFixtures extends Fixture
         ],
         [
             'titre' => 'Journée d\'expertise le 1er mars 2024',
-            'article' => 'J\organise le 1er mars 2024 à la boutique une journée d\'expertise de bijoux.\n\n1
+            'article' => 'J\organise le 1er mars 2024 à la boutique une journée d\'expertise de bijoux.
             Venez nombreux, apportez vos bijoux et laissez-vous surprendre par la valeur 
-            cachée de vos pièces précieuses.\n\n2
+            cachée de vos pièces précieuses.
             Nous vous porposerons des conseils pour l\'entretien de vos bijoux et des astuces 
-            pour les mettre en valeur.\n\n3
+            pour les mettre en valeur.
             Et si vous souhaitez les vendre, nous vous ferons une offre de rachat.',
-            'photo' => 'logo.jpg',
+            'photo' => 'logo.png',
             'description' => 'logo',
             'lienVideo' => '',
             'date' => '2024/02/23',
