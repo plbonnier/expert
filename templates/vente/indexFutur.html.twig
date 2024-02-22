@@ -9,7 +9,7 @@
 		<div class="card vente-card mx-auto my-4" loading="lazy">
 			<a href="#" class="link-underline link-underline-opacity-0">
 				<h4 class="card-header h4-vente-a">Vente du
-					{{ vente.dateVente ? vente.dateVente|date('d-m-Y H:i:s') : '' }}</h4>
+					{{ vente.dateVente ? vente.dateVente|date('d-m-Y à H:i') : '' }}</h4>
 			</a>
 			<div class="card-body">
 				<h4 class="card-title h4-vente">{{ vente.nomVente }}
@@ -35,12 +35,12 @@
 									€ -
 									{{ lot.estimationHaute }}
 									€</p>
-								<a href="#" class="btn btn-primary">Voir le lot</a>
+								<a href="#" class="btn btn-vente">Voir le lot</a>
 							</div>
 						</div>
 					{% endfor %}
 				</div>
-				<a class="btn btn-primary mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a>
 			</div>
 		</div>
 	{% else %}
