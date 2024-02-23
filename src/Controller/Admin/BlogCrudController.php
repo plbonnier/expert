@@ -16,16 +16,12 @@ class BlogCrudController extends AbstractCrudController
         return Blog::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
             TextField::new('titre'),
-            TextEditorField::new('article', 'Contenu')
-            ->setFormType(CKEditorType::class)
-            ->setFormTypeOptions([
-                'config_name' => 'main_config',
-        ]),
+            TextEditorField::new('article'),
         ];
     }
     

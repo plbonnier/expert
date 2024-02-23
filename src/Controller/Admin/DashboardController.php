@@ -23,10 +23,9 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        
+
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(BlogCrudController::class)->generateUrl());
-
     }
 
     public function configureDashboard(): Dashboard
@@ -47,6 +46,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Video', 'fas fa-list', Video::class);
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-home', 'app_home');
         yield MenuItem::linkToRoute('Deconnexion', 'fas fa-sign-out-alt', 'app_logout');
-        
     }
 }
