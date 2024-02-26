@@ -19,6 +19,9 @@ class Diplome
     #[ORM\Column(length: 50)]
     private ?string $date = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Diplome
     public function setDate(string $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
 
         return $this;
     }
