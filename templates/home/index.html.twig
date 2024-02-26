@@ -94,7 +94,7 @@
 					<h4 class="heading card-header h4-blog">
 						{{ article.titre }}</h4>
 					<img src="{{ asset('build/images/' ~ article.photo) }}" class="card-img-top img-blog-accueil" loading="lazy" alt="{{ article.description }}">
-					<p class="p-blog">{{ article.article|nl2br }}</p>
+					<p class="p-blog">{{ article.article|striptags|u.truncate(150, '...', true)|raw }}</p>
 					<button class="btn">Voir cet article</button>
 				</div>
 			</div>
