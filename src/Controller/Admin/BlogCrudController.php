@@ -4,10 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Blog;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class BlogCrudController extends AbstractCrudController
 {
@@ -22,6 +21,8 @@ class BlogCrudController extends AbstractCrudController
         return [
             TextField::new('titre'),
             TextEditorField::new('article'),
+            TextField::new('lienVideo'),
+            DateField::new('date'),
         ];
     }
     
