@@ -28,6 +28,7 @@ class UserCrudController extends AbstractCrudController
                     'User' => 'ROLE_USER',
                 ])
                 ->allowMultipleChoices(),
+            TextField::new('password')->hideOnIndex(),
             TextField::new('nom'),
             TextField::new('prenom'),
             TextEditorField::new('description'),

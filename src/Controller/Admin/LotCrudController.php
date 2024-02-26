@@ -25,7 +25,11 @@ class LotCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('vente'),
+            AssociationField::new('vente')
+            ->autocomplete()
+            ->formatValue(function ($value, $entity) {
+                return $value->getNomVente();
+            }),
             TextField::new('nom'),
             NumberField::new('lotNumero'),
             TextEditorField::new('description'),
@@ -37,7 +41,9 @@ class LotCrudController extends AbstractCrudController
             TextField::new('materiaux'),
             TextField::new('pierre'),
             BooleanField::new('certificat'),
-            ImageField::new('photo'),
+            ImageField::new('photo')
+                ->setBasePath('uploads/images/pictures/')
+                ->setUploadDir('public/uploads/images/pictures/'),
             DateField::new('date'),
             MoneyField::new('prixVendu')->setCurrency('EUR'),
         ];
