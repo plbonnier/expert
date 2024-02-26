@@ -15,7 +15,7 @@ class DiplomeCrudController extends AbstractCrudController
         return Diplome::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -26,5 +26,4 @@ class DiplomeCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/images/pictures/'),
         ];
     }
-    
 }

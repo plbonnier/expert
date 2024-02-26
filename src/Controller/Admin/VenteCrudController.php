@@ -10,7 +10,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
 class VenteCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

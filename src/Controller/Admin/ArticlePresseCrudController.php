@@ -17,7 +17,7 @@ class ArticlePresseCrudController extends AbstractCrudController
         return ArticlePresse::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -31,5 +31,4 @@ class ArticlePresseCrudController extends AbstractCrudController
             TextField::new('journal'),
         ];
     }
-    
 }

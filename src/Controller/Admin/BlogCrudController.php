@@ -30,5 +30,4 @@ class BlogCrudController extends AbstractCrudController
             DateField::new('date'),
         ];
     }
-    
 }
