@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticlePresseRepository;
 use App\Repository\BlogRepository;
 use App\Repository\LotRepository;
 use App\Repository\VenteRepository;
@@ -15,10 +16,12 @@ class HomeController extends AbstractController
     public function index(
         VenteRepository $venteRepository,
         LotRepository $lotRepository,
-        BlogRepository $blogRepository
+        BlogRepository $blogRepository,
+        ArticlePresseRepository $articlePresseRepo
     ): Response {
         $ventesPasses = $venteRepository->findBy(['passe' => true], ['dateVente' => 'DESC'], 2);
         $ventesFutur = $venteRepository->findBy(['futur' => true], ['dateVente' => 'ASC'], 2);
+        $articlesPresse = $articlePresseRepo->findBy([], ['id' => 'DESC'], 2);
         $articles = $blogRepository->findBy([], ['date' => 'DESC'], 2);
         $lotsFuturs = [];
         $selectedLotsFutur = [];
@@ -51,7 +54,8 @@ class HomeController extends AbstractController
             'ventesFutur' => $ventesFutur,
             'selectedLotsPasses' => $selectedLotsPasses,
             'selectedLotsFutur' => $selectedLotsFutur,
-            'articles' => $articles
+            'articles' => $articles,
+            'articlesPresse' => $articlesPresse,
             ]);
     }
 }
