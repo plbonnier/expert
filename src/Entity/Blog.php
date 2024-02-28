@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,12 +20,6 @@ class Blog
     private ?string $article = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $lienVideo = null;
 
     #[ORM\Column(length: 255)]
@@ -31,6 +27,14 @@ class Blog
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\OneToMany(mappedBy: 'blog', targetEntity: PhotoBlog::class, orphanRemoval: true)]
+    private Collection $photoBlogs;
+
+    public function __construct()
+    {
+        $this->photoBlogs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,30 +49,6 @@ class Blog
     public function setArticle(string $article): static
     {
         $this->article = $article;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): static
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
 
         return $this;
     }
@@ -105,6 +85,36 @@ class Blog
     public function setDate(?\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PhotoBlog>
+     */
+    public function getPhotoBlogs(): Collection
+    {
+        return $this->photoBlogs;
+    }
+
+    public function addPhotoBlog(PhotoBlog $photoBlog): static
+    {
+        if (!$this->photoBlogs->contains($photoBlog)) {
+            $this->photoBlogs->add($photoBlog);
+            $photoBlog->setBlog($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoBlog(PhotoBlog $photoBlog): static
+    {
+        if ($this->photoBlogs->removeElement($photoBlog)) {
+            // set the owning side to null (unless already changed)
+            if ($photoBlog->getBlog() === $this) {
+                $photoBlog->setBlog(null);
+            }
+        }
 
         return $this;
     }

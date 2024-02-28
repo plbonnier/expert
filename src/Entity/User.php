@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PhotoUser::class, orphanRemoval: true)]
+    private Collection $photoUsers;
+
+    public function __construct()
+    {
+        $this->photoUsers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +149,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PhotoUser>
+     */
+    public function getPhotoUsers(): Collection
+    {
+        return $this->photoUsers;
+    }
+
+    public function addPhotoUser(PhotoUser $photoUser): static
+    {
+        if (!$this->photoUsers->contains($photoUser)) {
+            $this->photoUsers->add($photoUser);
+            $photoUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoUser(PhotoUser $photoUser): static
+    {
+        if ($this->photoUsers->removeElement($photoUser)) {
+            // set the owning side to null (unless already changed)
+            if ($photoUser->getUser() === $this) {
+                $photoUser->setUser(null);
+            }
+        }
 
         return $this;
     }
