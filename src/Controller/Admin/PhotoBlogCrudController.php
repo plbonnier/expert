@@ -20,8 +20,10 @@ class PhotoBlogCrudController extends AbstractCrudController
         return [
         TextField::new('description'),
         ImageField::new('photo')
-        ->setBasePath('uploads/images/pictures/')
-        ->setUploadDir('public/uploads/images/pictures/'),
+            ->setUploadDir('public/uploads/images/pictures')
+            ->setBasePath('uploads/images/pictures')
+            ->setLabel('Image')
+                ->setRequired(false),
         AssociationField::new('blog')
         ->setCrudController(BlogCrudController::class)
         ];

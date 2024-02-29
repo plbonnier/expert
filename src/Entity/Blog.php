@@ -28,7 +28,7 @@ class Blog
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'blog', targetEntity: PhotoBlog::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'blog', targetEntity: PhotoBlog::class, cascade: ['persist', 'remove'])]
     private Collection $photoBlogs;
 
     public function __construct()
