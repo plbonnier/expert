@@ -24,6 +24,13 @@ class PhotoBlog
     #[ORM\JoinColumn(nullable: false)]
     private ?Blog $blog = null;
 
+    public function __toString(): string
+    {
+        // Retourne la description ou le chemin de la photo comme représentation string de PhotoBlog
+        // Ajustez selon ce qui est le plus pertinent pour votre cas d'usage
+        return $this->description ?: 'Photo sans description';
+    }
+
     public function getId(): ?int
     {
         return $this->id;
