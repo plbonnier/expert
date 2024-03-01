@@ -38,8 +38,6 @@ class BlogFixtures extends Fixture
             l\'accumulation de saleté ou de résidus.
             \n\nEn somme, la bague en or sertie d\'un diamant est bien plus qu\'un simple accessoire de mode;
             elle est le symbole ultime de l\'amour, du luxe et de l\'élégance.',
-            'photo' => 'bague_diamant.jpg',
-            'description' => 'bague diamant avec de l\or',
             'lienVideo' => 'https://www.youtube.com/watch?v=rMMdkKXdF_Q&list=RDrMMdkKXdF_Q&start_radio=1',
             'date' => '2024/02/22',
         ],
@@ -63,8 +61,6 @@ class BlogFixtures extends Fixture
             les rendant parfaits pour toute occasion spéciale.\n\n
             En résumé, les boucles d\'oreille pendantes en émeraude et or sont bien plus que de simples accessoires ; 
             ce sont des œuvres d\'art à part entière qui célèbrent la beauté naturelle et le savoir-faire artisanal.',
-            'photo' => 'boucle_oreille_emeraude.jpg',
-            'description' => 'boucle d\'oreille en émeraude et or',
             'lienVideo' => 'https://www.youtube.com/watch?v=rMMdkKXdF_Q&list=RDrMMdkKXdF_Q&start_radio=1',
             'date' => '2024/02/23',
         ],
@@ -78,8 +74,6 @@ class BlogFixtures extends Fixture
             leur pureté et leur taille. 
             Une fois que tous les éléments ont été inspectés individuellement, l\'expert assemble les pièces 
             du puzzle pour déterminer l\'origine, l\'âge et la valeur globale du bijou.',
-            'photo' => 'collier_3jpg',
-            'description' => 'collier',
             'lienVideo' => 'https://www.youtube.com/watch?v=rMMdkKXdF_Q&list=RDrMMdkKXdF_Q&start_radio=1',
             'date' => '2024/02/21',
         ],
@@ -91,8 +85,6 @@ class BlogFixtures extends Fixture
             Nous vous porposerons des conseils pour l\'entretien de vos bijoux et des astuces 
             pour les mettre en valeur.
             Et si vous souhaitez les vendre, nous vous ferons une offre de rachat.',
-            'photo' => 'logo.png',
-            'description' => 'logo',
             'lienVideo' => '',
             'date' => '2024/02/23',
         ],
@@ -104,8 +96,6 @@ class BlogFixtures extends Fixture
             $blog = new Blog();
             $blog->setTitre($article['titre']);
             $blog->setArticle($article['article']);
-            $blog->setPhoto($article['photo']);
-            $blog->setDescription($article['description']);
             $blog->setLienVideo($article['lienVideo']);
             $blog->setDate(new DateTime($article['date']));
             $manager->persist($blog);

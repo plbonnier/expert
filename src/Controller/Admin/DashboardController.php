@@ -6,6 +6,8 @@ use App\Entity\ArticlePresse;
 use App\Entity\Blog;
 use App\Entity\Diplome;
 use App\Entity\Lot;
+use App\Entity\PhotoBlog;
+use App\Entity\PhotoUser;
 use App\Entity\User;
 use App\Entity\Vente;
 use App\Entity\Video;
@@ -38,10 +40,12 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Blog', 'fas fa-list', Blog::class);
+        yield MenuItem::linkToCrud('PhotoBlog', 'fas fa-list', PhotoBlog::class);
         yield MenuItem::linkToCrud('ArticlePresse', 'fas fa-list', ArticlePresse::class);
         yield MenuItem::linkToCrud('Diplome', 'fas fa-list', Diplome::class);
         yield MenuItem::linkToCrud('Lot', 'fas fa-list', Lot::class);
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('PhotoUser', 'fas fa-list', PhotoUser::class);
         yield MenuItem::linkToCrud('Vente', 'fas fa-list', Vente::class);
         yield MenuItem::linkToCrud('Video', 'fas fa-list', Video::class);
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-home', 'app_home');

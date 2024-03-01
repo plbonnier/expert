@@ -20,7 +20,7 @@ class DiplomeCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nomDiplome'),
-            DateField::new('date'),
+            TextField::new('date'),
             ImageField::new('photo')
                 ->setBasePath('uploads/images/pictures/')
                 ->setUploadDir('public/uploads/images/pictures/'),

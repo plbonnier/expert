@@ -3,10 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\PhotoUserType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -32,6 +33,11 @@ class UserCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('prenom'),
             TextEditorField::new('description'),
+            CollectionField::new('photoUsers')
+                ->setEntryType(PhotoUserType::class)
+                ->setFormTypeOptions(['by_reference' => false])
+                ->setEntryIsComplex(true)
+                ->setLabel('Photos du User')
         ];
     }
 }
