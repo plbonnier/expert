@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Blog;
-use App\Form\PhotoBlogType; // Assurez-vous d'importer PhotoBlogType
+use App\Form\PhotoBlogType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField; // Importez CollectionField
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -30,12 +30,6 @@ class BlogCrudController extends AbstractCrudController
                 ->setFormTypeOptions(['by_reference' => false])
                 ->setEntryIsComplex(true)
                 ->setLabel('Photos du blog')
-                // ->formatValue(function ($value) {
-                // Convertissez les objets photoBlog en chaînes de description
-                // return array_map(function ($photoBlog) {
-                    // return (string) $photoBlog; // Ici, la méthode __toString() de PhotoBlog est utilisée
-                // }, $value);
-                // }),
         ];
     }
 }

@@ -8,7 +8,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -39,12 +38,6 @@ class UserCrudController extends AbstractCrudController
                 ->setFormTypeOptions(['by_reference' => false])
                 ->setEntryIsComplex(true)
                 ->setLabel('Photos du User')
-                // ->formatValue(function ($value) {
-                    // Convertissez les objets photoBlog en chaînes de description
-                    // return array_map(function ($photoUser) {
-                        // return (string) $photoUser; // Ici, la méthode __toString() de PhotoBlog est utilisée
-                    // }, $value);
-                // }),
         ];
     }
 }
