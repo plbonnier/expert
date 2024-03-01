@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\PhotoUserType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -32,6 +34,17 @@ class UserCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('prenom'),
             TextEditorField::new('description'),
+            CollectionField::new('photoUsers')
+                ->setEntryType(PhotoUserType::class)
+                ->setFormTypeOptions(['by_reference' => false])
+                ->setEntryIsComplex(true)
+                ->setLabel('Photos du User')
+                // ->formatValue(function ($value) {
+                    // Convertissez les objets photoBlog en chaînes de description
+                    // return array_map(function ($photoUser) {
+                        // return (string) $photoUser; // Ici, la méthode __toString() de PhotoBlog est utilisée
+                    // }, $value);
+                // }),
         ];
     }
 }

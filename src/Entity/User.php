@@ -39,12 +39,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PhotoUser::class, orphanRemoval: true)]
+    #[ORM\OneToMany(
+        mappedBy: 'user',
+        targetEntity: PhotoUser::class,
+        orphanRemoval: true,
+        cascade: ['persist', 'remove']
+    )]
     private Collection $photoUsers;
 
     public function __construct()
     {
         $this->photoUsers = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->email;
     }
 
     public function getId(): ?int
@@ -73,7 +83,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-
     /**
      * @see UserInterface
      */
@@ -107,7 +116,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
     /**
      * @see UserInterface
      */
@@ -156,12 +164,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, PhotoUser>
      */
-    public function getPhotoUsers(): Collection
+    public function getPhotoUsers(): ?Collection
     {
         return $this->photoUsers;
     }
 
-    public function addPhotoUser(PhotoUser $photoUser): static
+    public function addPhotoUser(?PhotoUser $photoUser): static
     {
         if (!$this->photoUsers->contains($photoUser)) {
             $this->photoUsers->add($photoUser);
@@ -174,7 +182,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePhotoUser(PhotoUser $photoUser): static
     {
         if ($this->photoUsers->removeElement($photoUser)) {
-            // set the owning side to null (unless already changed)
             if ($photoUser->getUser() === $this) {
                 $photoUser->setUser(null);
             }
