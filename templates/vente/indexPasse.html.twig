@@ -7,7 +7,7 @@
 	<h1>Ventes terminées</h1>
 	{% for vente in ventes %}
 		<div class="card vente-card mx-auto mt-4 mb-2" loading="lazy">
-			<a href="#" class="link-underline link-underline-opacity-0">
+			<a href="{{ path('app_vente_show', { slug: vente.slug }) }}" class="link-underline link-underline-opacity-0">
 				<h4 class="card-header h4-vente-a">Vente du
 					{{ vente.dateVente ? vente.dateVente|date('d-m-Y') : '' }}</h4>
 			</a>
@@ -33,7 +33,7 @@
 						</div>
 					{% endfor %}
 				</div>
-				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir les résultats</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'slug': vente.slug}) }}">Voir les résultats</a>
 			</div>
 		</div>
 	{% else %}

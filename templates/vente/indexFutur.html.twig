@@ -7,7 +7,7 @@
 	<h1>Ventes à venir</h1>
 	{% for vente in ventes %}
 		<div class="card vente-card mx-auto my-4" loading="lazy">
-			<a href="#" class="link-underline link-underline-opacity-0">
+			<a href="{{ path('app_vente_show', { slug: vente.slug }) }}" class="link-underline link-underline-opacity-0">
 				<h4 class="card-header h4-vente-a">Vente du
 					{{ vente.dateVente ? vente.dateVente|date('d-m-Y à H:i') : '' }}</h4>
 			</a>
