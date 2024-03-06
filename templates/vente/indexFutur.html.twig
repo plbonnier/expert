@@ -40,7 +40,7 @@
 						</div>
 					{% endfor %}
 				</div>
-				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': vente.id}) }}">Voir la vente</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', { slug: vente.slug }) }}">Voir la vente</a>
 			</div>
 		</div>
 	{% else %}
