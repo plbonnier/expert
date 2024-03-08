@@ -35,7 +35,7 @@
 									€ -
 									{{ lot.estimationHaute }}
 									€</p>
-								<a href="#" class="btn btn-vente">Voir le lot</a>
+								<a href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}" class="btn btn-vente">Voir le lot</a>
 							</div>
 						</div>
 					{% endfor %}

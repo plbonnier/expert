@@ -59,6 +59,11 @@ class Lot
     #[ORM\Column(nullable: true)]
     private ?int $prixVendu = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photoCertificat = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +77,26 @@ class Lot
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        $this->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nom), '-'));
+
+        return $this;
+    }
+    public function generateSlug(): void
+    {
+        // Vérifie si le nomVente n'est pas null
+        if ($this->nom) {
+            $this->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->nom), '-'));
+        }
+    }
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
@@ -241,6 +266,17 @@ class Lot
     {
         $this->prixVendu = $prixVendu;
 
+        return $this;
+    }
+
+    public function getPhotoCertificat(): ?string
+    {
+        return $this->photoCertificat;
+    }
+
+    public function setPhotoCertificat(?string $photoCertificat): static
+    {
+        $this->photoCertificat = $photoCertificat;
         return $this;
     }
 }

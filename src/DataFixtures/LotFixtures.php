@@ -6,9 +6,13 @@ use App\Entity\Lot;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class LotFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(private SluggerInterface $slugger)
+    {
+    }
     public const LOTS = [
         [
             'nom' => 'Bague en diamant',
@@ -144,6 +148,8 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::LOTS as $data) {
             $lot = new Lot();
             $lot->setNom($data['nom']);
+            $slug = $this->slugger->slug($data['nom']);
+            $lot->setSlug($slug);
             $lot->setLotNumero($data['lotNumero']);
             $lot->setDescription($data['description']);
             $lot->setEstimationBasse($data['estimationBasse']);
