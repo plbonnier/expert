@@ -90,6 +90,19 @@ class VenteController extends AbstractController
         ]);
     }
 
+    // #[Route('/{slug}/{slug}', name: 'app_vente_show_lot', methods: ['GET'])]
+    // public function showLot(Vente $vente, LotRepository $lotRepository, $slug2): Response
+    // {
+    //     $lots = $lotRepository->findByVente($vente->getId());
+    //     $lot = $lotRepository->findOneBy(['id' => $slug2]);
+
+    //     return $this->render('vente/showLot.html.twig', [
+    //         'vente' => $vente,
+    //         'lots' => $lots,
+    //         'lot' => $lot
+    //     ]);
+    // }
+
     #[Route('/{id}/edit', name: 'app_vente_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Vente $vente, EntityManagerInterface $entityManager): Response
     {
