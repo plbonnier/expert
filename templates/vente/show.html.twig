@@ -32,13 +32,13 @@
 					<div class="card3__content">
 						<p class="card3__title">{{ lot.nom }}</p>
 						<p class="card3__description">
-							estimation : {{ lot.estimationBasse }}
+							estimation : {{ lot.estimationBasse / 100 }}
 							€ - 
-							{{ lot.estimationHaute }}
+							{{ lot.estimationHaute / 100 }}
 							€
 						</p>
 						{% if vente.passe %}
-							<p class="card3__description">prix de vente : {{ lot.vendu }}
+							<p class="card3__description">prix de vente : {{ lot.prixVendu / 100}}
 								€</p>
 						{% endif %}
 					</div>

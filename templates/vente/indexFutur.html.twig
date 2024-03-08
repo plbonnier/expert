@@ -31,9 +31,9 @@
 								<h4 class="card-title h4-vente">{{ lot.nom }}</h5>
 								<p class="card-text">
 									Estimation :
-									{{ lot.estimationBasse }}
+									{{ lot.estimationBasse /100 }}
 									€ -
-									{{ lot.estimationHaute }}
+									{{ lot.estimationHaute /100 }}
 									€</p>
 								<a href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}" class="btn btn-vente">Voir le lot</a>
 							</div>

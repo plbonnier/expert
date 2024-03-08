@@ -16,41 +16,41 @@
 	<div class="d-flex flex-column justify-content-center align-items-center">
 		<p class="p-blog">{{ lot.description }}</p>
 		<p class="">
-			estimation :
-			{{ lot.estimationBasse }}
+			Estimation :
+			{{ lot.estimationBasse / 100 }}
 			€ -
-			{{ lot.estimationHaute }}
+			{{ lot.estimationHaute / 100 }}
 			€
 		</p>
 		{% if lot.taille %}
-			<p class="">taille :
+			<p class="">Taille :
 				{{ lot.taille }}</p>
 		{% endif %}
 		{% if lot.poids %}
-			<p class="">poids :
+			<p class="">Poids :
 				{{ lot.poids }}</p>
 		{% endif %}
 		{% if lot.materiaux %}
-			<p class="">matériaux :
+			<p class="">Matériaux :
 				{{ lot.materiaux }}</p>
 		{% endif %}
 		{% if lot.pierre %}
-			<p class="">pierre :
+			<p class="">Pierre :
 				{{ lot.pierre }}</p>
 		{% endif %}
 		{% if lot.certificat %}
-			<p class="">certificat 
+			<p class="">Certificat 
 			<i class="bi bi-check2"></i>
 			</p>
 			{# {% if lot.photoCertificat %} #}
 				<img id="my_image" src="{{ asset('build/images/' ~ lot.photoCertificat) }}" class="object-fit img-certificat" alt="certficat du lot numéro {{ lot.lotNumero }}"/>
-				<button id="view-image-button" class="btn btn-vente">Voir le certificat</button>
+				<button id="view-image-button" class="btn btn-vente mt-2">Voir le certificat</button>
 			{# {% endif %} #}
 		{% endif %}
 		
 		{% if vente.passe %}
-			<p class="">prix de vente :
-				{{ lot.vendu }}
+			<p class="">Prix de vente (hors frais) :
+				{{ lot.prixVendu / 100}}
 				€</p>
 		{% endif %}
 	</div>

@@ -26,8 +26,8 @@
 							<div class="card-body text-center texte-lot-vente">
 								<h4 class="card-title h4-vente">{{ lot.nom }}</h5>
 								<p class="card-text">
-								Estimation : {{ lot.estimationBasse }} € - {{ lot.estimationHaute }} €<br>
-								Prix de vente : {{ lot.prixVendu }} € (hors frais)</p>
+								Estimation : {{ lot.estimationBasse / 100 }} € - {{ lot.estimationHaute / 100 }} €<br>
+								Prix de vente : {{ lot.prixVendu / 100 }} € (hors frais)</p>
 								<a href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}" class="btn btn-vente">Voir le lot</a>
 							</div>
 						</div>
