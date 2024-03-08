@@ -1,62 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vente{% endblock %}
+{% block title %}Vente
+{% endblock %}
 
 {% block body %}
-    <h1>Vente</h1>
+	<h1>{{ vente.nomVente }}</h1>
+	{% if vente.passe %}
+		<h2 class="h2-accueil">Vente du
+			{{ vente.dateVente|date('Y-m-d') }}</h2>
+		<h2 class="h2-accueil">chez
+			{{ vente.commissairePriseur }}</h2>
+		<p class="p-vente">{{ vente.ville }}</p>
+	{% else %}
+		<h2 class="h2-accueil">Cette vente aura lieu le
+			{{ vente.dateVente|date('Y-m-d à H:i') }}</h2>
+		<h2 class="h2-accueil">chez
+			{{ vente.commissairePriseur }}</h2>
+		<p class="p-vente">{{ vente.adresse }},
+			{{ vente.codePostal }}
+			{{ vente.ville }}</p>
+		<p class="p-vente">Exposition le
+			{{ vente.dateExposition|date('Y-m-d') }}
+			de
+			{{ vente.heureExposition }}</p>
+	{% endif %}
+	<div class=" d-flex justify-content-around gap-5 flex-wrap">
+		{% for lot in vente.lots %}
+			<div class="d-flex flex-column">
+				<section id="card1" class="card3">
+					<img src="{{ asset('build/images/' ~ lot.photo) }}" class="object-fit" alt="{{ lot.nom }}"/>
+					<div class="card3__content">
+						<p class="card3__title">{{ lot.nom }}</p>
+						<p class="card3__description">
+							estimation : {{ lot.estimationBasse }}
+							€ - 
+							{{ lot.estimationHaute }}
+							€
+						</p>
+						{% if vente.passe %}
+							<p class="card3__description">prix de vente : {{ lot.vendu }}
+								€</p>
+						{% endif %}
+					</div>
+				</section>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ vente.id }}</td>
-            </tr>
-            <tr>
-                <th>Passe</th>
-                <td>{{ vente.passe ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Futur</th>
-                <td>{{ vente.futur ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>DateVente</th>
-                <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CommissairePriseur</th>
-                <td>{{ vente.commissairePriseur }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ vente.adresse }}</td>
-            </tr>
-            <tr>
-                <th>CodePostal</th>
-                <td>{{ vente.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ vente.ville }}</td>
-            </tr>
-            <tr>
-                <th>NomVente</th>
-                <td>{{ vente.nomVente }}</td>
-            </tr>
-            <tr>
-                <th>DateExposition</th>
-                <td>{{ vente.dateExposition ? vente.dateExposition|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>HeureExposition</th>
-                <td>{{ vente.heureExposition }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_vente_index') }}">back to list</a>
-
-    <a href="{{ path('app_vente_edit', {'id': vente.id}) }}">edit</a>
-
-    {{ include('vente/_delete_form.html.twig') }}
+				<div class="lot mt-2">
+					<p class="p-blog">{{ lot.description }}</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="d-flex justify-content-around">
+	{% if vente.passe %}
+		<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">Voir les ventes à venir</a>
+		<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">retour aux ventes terminées</a>
+	{% else %}
+		<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">Voir les ventes terminées</a>
+		<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">retour aux ventes à venir</a>
+	{% endif %}
+	</div>
 {% endblock %}

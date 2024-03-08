@@ -13,7 +13,7 @@
 	<div class="accueil-vente-passe">
 		{% for venteFutur in ventesFutur %}
 			<div class="card vente-card-accueil mx-auto">
-				<a href="#" class="link-underline link-underline-opacity-0">
+				<a href="{{ path('app_vente_show', { slug: venteFutur.slug }) }}" class="link-underline link-underline-opacity-0">
 					<h4 class="card-header h4-vente-a">Vente du
 						{{ venteFutur.dateVente ? venteFutur.dateVente|date('d-m-Y à H:i') : '' }}</h4>
 				</a>
@@ -43,7 +43,7 @@
 							</div>
 						{% endfor %}
 					</div>
-					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': venteFutur.id}) }}">Voir la vente</a>
+					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'slug': venteFutur.slug}) }}">Voir la vente</a>
 				</div>
 			</div>
 		{% else %}
@@ -56,7 +56,7 @@
 	<div class="accueil-vente-passe">
 		{% for ventePasse in ventesPasses %}
 			<div class="card vente-card-accueil mx-auto mt-2">
-				<a href="#" class="link-underline link-underline-opacity-0">
+				<a href="{{ path('app_vente_show', {'slug': ventePasse.slug}) }}" class="link-underline link-underline-opacity-0">
 					<h4 class="card-header h4-vente-a">Vente du
 						{{ ventePasse.dateVente ? ventePasse.dateVente|date('d-m-Y') : '' }}</h4>
 				</a>
@@ -75,7 +75,7 @@
 							</div>
 						{% endfor %}
 					</div>
-					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'id': ventePasse.id}) }}">Voir les résultats</a>
+					<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'slug': ventePasse.slug}) }}">Voir les résultats</a>
 
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 				<div class="content">
 					<h4 class="heading card-header h4-blog">
 						{{ article.titre }}</h4>
-					<img src="{{ asset('build/images/' ~ article.photo) }}" class="card-img-top img-blog-accueil" loading="lazy" alt="{{ article.description }}">
+					{# <img src="{{ asset('build/images/' ~ article.photo) }}" class="card-img-top img-blog-accueil" loading="lazy" alt="{{ article.description }}"> #}
 					<p class="p-blog">{{ article.article|striptags|u.truncate(150, '...', true)|raw }}</p>
 					<button class="btn">Voir cet article</button>
 				</div>

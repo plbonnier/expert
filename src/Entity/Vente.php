@@ -49,6 +49,9 @@ class Vente
     #[ORM\OneToMany(mappedBy: 'vente', targetEntity: Lot::class)]
     private Collection $lots;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->lots = new ArrayCollection();
@@ -143,6 +146,7 @@ class Vente
         return $this;
     }
 
+
     public function getNomVente(): ?string
     {
         return $this->nomVente;
@@ -151,6 +155,26 @@ class Vente
     public function setNomVente(?string $nomVente): static
     {
         $this->nomVente = $nomVente;
+
+        $this->generateSlug();
+
+        return $this;
+    }
+    public function generateSlug(): void
+    {
+        // Vérifie si le nomVente n'est pas null
+        if ($this->nomVente) {
+            $this->slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->nomVente), '-'));
+        }
+    }
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }
