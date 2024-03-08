@@ -5,10 +5,14 @@ namespace App\DataFixtures;
 use App\Entity\Vente;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use DateTime;
 
 class VenteFixtures extends Fixture
 {
+    public function __construct(private SluggerInterface $slugger)
+    {
+    }
     public const VENTES = [
         [
             'passe' => true,
@@ -97,6 +101,8 @@ class VenteFixtures extends Fixture
             $vente->setCodePostal($venteFixture['codePostal']);
             $vente->setVille($venteFixture['ville']);
             $vente->setNomVente($venteFixture['nomVente']);
+            $slug = $this->slugger->slug($venteFixture['nomVente']);
+            $vente->setSlug($slug);
             $vente->setDateExposition(new DateTime($venteFixture['dateExposition']));
             $vente->setHeureExposition($venteFixture['heureExposition']);
             $manager->persist($vente);

@@ -6,11 +6,15 @@ use App\Entity\Vente;
 use App\Form\VenteType;
 use App\Repository\LotRepository;
 use App\Repository\VenteRepository;
+use App\Service\SlugService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/ventes')]
 class VenteController extends AbstractController
@@ -36,7 +40,7 @@ class VenteController extends AbstractController
         return $this->render('vente/indexPasse.html.twig', [
             'ventes' => $ventes,
             'selectedLots' => $selectedLots
-            ]);
+        ]);
     }
 
     #[Route('/prochaines', name: 'app_vente_futur_index', methods: ['GET'])]
@@ -56,15 +60,17 @@ class VenteController extends AbstractController
             // Sélectionner un nombre limité de lots, ici 3
             $selectedLots[$vente->getId()] = array_slice($lots, 0, 3);
         }
-            return $this->render('vente/indexFutur.html.twig', [
+        return $this->render('vente/indexFutur.html.twig', [
             'ventes' => $ventes,
             'selectedLots' => $selectedLots
-            ]);
+        ]);
     }
 
     #[Route('/new', name: 'app_vente_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $vente = new Vente();
         $form = $this->createForm(VenteType::class, $vente);
         $form->handleRequest($request);
@@ -82,11 +88,17 @@ class VenteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_vente_show', methods: ['GET'])]
-    public function show(Vente $vente): Response
-    {
+    #[Route('/{slug}', name: 'app_vente_show', methods: ['GET'])]
+    public function show(
+        Vente $vente,
+        LotRepository $lotRepository,
+    ): Response {
+        $slug = $vente->getSlug();
+        $lots = $lotRepository->findByVente($vente->getId());
         return $this->render('vente/show.html.twig', [
             'vente' => $vente,
+            'slug' => $slug,
+            'lots' => $lots
         ]);
     }
 
