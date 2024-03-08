@@ -43,7 +43,7 @@
 			<i class="bi bi-check2"></i>
 			</p>
 			{# {% if lot.photoCertificat %} #}
-				<img id="my_image" src="{{ asset('build/images/' ~ lot.photoCertificat) }}" class="object-fit w-50" alt="certficat du {{ lot.nom }}"/>
+				<img id="my_image" src="{{ asset('build/images/' ~ lot.photoCertificat) }}" class="object-fit img-certificat" alt="certficat du lot numéro {{ lot.lotNumero }}"/>
 				<button id="view-image-button" class="btn btn-vente">Voir le certificat</button>
 			{# {% endif %} #}
 		{% endif %}
