@@ -349,14 +349,17 @@ p {
     }
 }
 
-.bi-check2{
+.bi-check2 {
     color: $colorGreenEmerald;
 }
 
-.img-certificat{
+.img-certificat {
     width: 4rem;
     height: auto;
     object-fit: cover;
+}
+.img-lot-vente{
+    width: 80%;
 }
 
 // -------------------footer------------------------------------------------------------------------------------
@@ -397,6 +400,13 @@ p {
     }
 }
 
+.image-card-vente {
+    width: 70%;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem 0 $colorGold;
+    height: auto;
+}
+
 .img-vente {
     border-radius: 1rem;
 
@@ -410,6 +420,14 @@ p {
 
     @include media-breakpoint-up(md) {
         display: block;
+    }
+}
+
+.lien-lot-vente {
+    display: block;
+
+    @include media-breakpoint-up(md) {
+        display: none;
     }
 }
 
@@ -668,7 +686,7 @@ p {
 section.card3 {
     position: relative;
     width: 25rem;
-    height: 14,28rem;
+    height: 14, 28rem;
     background-color: $colorGold;
     border-radius: 0.625rem;
     display: flex;
@@ -719,6 +737,7 @@ section.card3 {
     color: var(--white);
     font-weight: 700;
     text-align: center;
+
     @include media-breakpoint-up(md) {
         font-size: $fontSizeTitle;
     }
@@ -733,7 +752,10 @@ section.card3 {
     font-size: $fontSizeTextMob;
     color: $colorWhite;
     line-height: 1.4;
+
     @include media-breakpoint-up(md) {
         font-size: $fontSizeText;
     }
+
+
 }

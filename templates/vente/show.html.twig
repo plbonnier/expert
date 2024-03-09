@@ -24,41 +24,80 @@
 			de
 			{{ vente.heureExposition }}</p>
 	{% endif %}
-	<div class=" d-flex justify-content-around gap-5 flex-wrap">
+	{# ------------------------------------mobile--------------------- #}
+	<div class="d-md-none d-flex flex-column">
+		<div class="d-flex justify-content-around">
+			{% if vente.passe %}
+				<a class="btn btn-vente my-3 mx-3" href="{{ path('app_vente_futur_index') }}">Voir les ventes à venir</a>
+				<a class="btn btn-vente my-3 mx-3" href="{{ path('app_vente_passe_index') }}">retour aux ventes terminées</a>
+			{% else %}
+				<a class="btn btn-vente my-3 mx-3" href="{{ path('app_vente_passe_index') }}">Voir les ventes terminées</a>
+				<a class="btn btn-vente my-3 mx-3" href="{{ path('app_vente_futur_index') }}">retour aux ventes à venir</a>
+			{% endif %}
+		</div>
 		{% for lot in vente.lots %}
-			<div class="d-flex flex-column">
-				<section id="card1" class="card3">
-					<img src="{{ asset('build/images/' ~ lot.photo) }}" class="object-fit" alt="{{ lot.nom }}"/>
-					<div class="card3__content">
-						<p class="card3__title">{{ lot.nom }}</p>
-						<p class="card3__description">
-							estimation : {{ lot.estimationBasse / 100 }}
-							€ - 
-							{{ lot.estimationHaute / 100 }}
-							€
-						</p>
-						{% if vente.passe %}
-							<p class="card3__description">prix de vente : {{ lot.prixVendu / 100}}
-								€</p>
-						{% endif %}
+			<div class="d-flex flex-column align-items-center justify-content-center mb-4">
+				<div class="card image-card-vente">
+					<img src="{{ asset('build/images/' ~ lot.photo) }}" class="object-fit" alt="{{ lot.nom }}" loading="lazy"/>
+					<p class="h4-vente">{{ lot.nom }}</p>
+					<p class="p-vente">
+						estimation :
+						{{ lot.estimationBasse / 100 }}
+						€ -
+						{{ lot.estimationHaute / 100 }}
+						€
+					</p>
+					{% if vente.passe %}
+						<p class="p-vente">prix de vente :
+							{{ lot.prixVendu / 100}}
+							€</p>
+					{% endif %}
+					<div class="lot mt-2">
+						<p class="p-vente">{{ lot.description }}</p>
+						<a class="btn btn-vente mt-3" href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}">Voir le lot</a>
 					</div>
-				</section>
-
-
-				<div class="lot mt-2">
-					<p class="p-blog">{{ lot.description }}</p>
-				<a class="btn btn-vente mt-3" href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}">Voir le lot</a>
 				</div>
 			</div>
 		{% endfor %}
 	</div>
-	<div class="d-flex justify-content-around">
-	{% if vente.passe %}
-		<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">Voir les ventes à venir</a>
-		<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">retour aux ventes terminées</a>
-	{% else %}
-		<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">Voir les ventes terminées</a>
-		<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">retour aux ventes à venir</a>
-	{% endif %}
+	{# ---------------------------------------desktop---------------------- #}
+	<div class="d-none d-md-block">
+		<div class="d-flex justify-content-around gap-5 flex-wrap">
+			{% for lot in vente.lots %}
+				<div class="d-flex flex-column">
+					<section id="card1" class="card3">
+						<img src="{{ asset('build/images/' ~ lot.photo) }}" class="object-fit" alt="{{ lot.nom }}"/>
+						<div class="card3__content">
+							<p class="card3__title">{{ lot.nom }}</p>
+							<p class="card3__description">
+								estimation :
+								{{ lot.estimationBasse / 100 }}
+								€ -
+								{{ lot.estimationHaute / 100 }}
+								€
+							</p>
+							{% if vente.passe %}
+								<p class="card3__description">prix de vente :
+									{{ lot.prixVendu / 100}}
+									€</p>
+							{% endif %}
+						</div>
+					</section>
+					<div class="lot mt-2">
+						<p class="p-blog">{{ lot.description }}</p>
+						<a class="btn btn-vente mt-3" href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}">Voir le lot</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="d-flex justify-content-around">
+			{% if vente.passe %}
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">Voir les ventes à venir</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">retour aux ventes terminées</a>
+			{% else %}
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_passe_index') }}">Voir les ventes terminées</a>
+				<a class="btn btn-vente mt-3" href="{{ path('app_vente_futur_index') }}">retour aux ventes à venir</a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}
