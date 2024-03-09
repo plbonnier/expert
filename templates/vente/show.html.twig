@@ -54,7 +54,9 @@
 					{% endif %}
 					<div class="lot mt-2">
 						<p class="p-vente">{{ lot.description }}</p>
-						<a class="btn btn-vente mt-3" href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}">Voir le lot</a>
+						<div class="d-flex justify-content-center">
+							<a class="btn btn-vente mt-3" href="{{ path('app_vente_show_lot', { slug: vente.slug, slug2: lot.slug }) }}">Voir le lot</a>
+						</div>
 					</div>
 				</div>
 			</div>
