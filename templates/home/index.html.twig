@@ -127,7 +127,7 @@
 
 	{# ---------------------------blog-------------------------------- #}
 	<h2 class="h2-accueil">Les 2 dernières publications</h2>
-	<a href="" class="lien-fond-noir link-underline link-underline-opacity-0 mb-2">Voir le blog</a>
+	<a href="{{ path('app_blog_index') }}" class="lien-fond-noir link-underline link-underline-opacity-0 mb-2">Voir le blog</a>
 	<div class="accueil-blog">
 		{% for article in articles %}
 			<div class="card2 mx-auto">
