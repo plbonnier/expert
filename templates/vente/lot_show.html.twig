@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lot n°{{ lot.lotNumero }}
+	de la vente
+	{{ vente.nomVente }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="mx-5">Lot n°{{ lot.lotNumero }}
+		de la vente
+		{{ vente.nomVente }}</h1>
+	<h2 class="h2-accueil">{{ lot.nom }}</h2>
+	<div class="d-flex justify-content-center">
+		<img src="{{ asset('build/images/' ~ lot.photo) }}" class="object-fit w-50" alt="{{ lot.nom }}"/>
+	</div>
+	<div class="d-flex flex-column justify-content-center align-items-center">
+		<p class="p-blog">{{ lot.description }}</p>
+		<p class="">
+			Estimation :
+			{{ lot.estimationBasse / 100 }}
+			€ -
+			{{ lot.estimationHaute / 100 }}
+			€
+		</p>
+		{% if lot.taille %}
+			<p class="">Taille :
+				{{ lot.taille }}</p>
+		{% endif %}
+		{% if lot.poids %}
+			<p class="">Poids :
+				{{ lot.poids }}</p>
+		{% endif %}
+		{% if lot.materiaux %}
+			<p class="">Matériaux :
+				{{ lot.materiaux }}</p>
+		{% endif %}
+		{% if lot.pierre %}
+			<p class="">Pierre :
+				{{ lot.pierre }}</p>
+		{% endif %}
+		{% if lot.certificat %}
+			<p class="">Certificat
+				<i class="bi bi-check2"></i>
+			</p>
+			{% if lot.photoCertificat %}
+				<img id="my_image" src="{{ asset('build/images/' ~ lot.photoCertificat) }}" class="object-fit img-certificat" alt="certficat du lot numéro {{ lot.lotNumero }}"/>
+				<button id="view-image-button" class="btn btn-vente mt-2">Voir le certificat</button>
+			{% endif %}
+		{% endif %}
+
+		{% if vente.passe %}
+			<p class="">Prix de vente (hors frais) :
+				{{ lot.prixVendu / 100}}
+				€</p>
+		{% endif %}
+	</div>
+	<div class="d-flex justify-content-start ms-5">
+		<a class="btn btn-vente mt-3" href="{{ path('app_vente_show', {'slug': vente.slug}) }}">retour à la vente</a>
+	</div>
+{% endblock %}

@@ -6,9 +6,13 @@ use App\Entity\Lot;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class LotFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(private SluggerInterface $slugger)
+    {
+    }
     public const LOTS = [
         [
             'nom' => 'Bague en diamant',
@@ -25,6 +29,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => true,
             'photo' => 'bague_diamant.jpg',
             'vente' => 'vente_10/07/2023 10:00:00',
+            'photoCertificat' => 'bague_diamant.jpg',
         ],
         [
             'nom' => 'Bague rubis',
@@ -41,6 +46,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => false,
             'photo' => 'bague_rubis.jpg',
             'vente' => 'vente_10/07/2023 10:00:00',
+            'photoCertificat' => '',
         ],
         [
             'nom' => 'Bague saphir et or rose',
@@ -57,6 +63,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => false,
             'photo' => 'bague_saphir.jpg',
             'vente' => 'vente_10/07/2023 10:00:00',
+            'photoCertificat' => '',
         ],
         [
             'nom' => 'Boucles d\'oreille émeraude',
@@ -73,6 +80,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => true,
             'photo' => 'boucle_oreille_emeraude.jpg',
             'vente' => 'vente_10/07/2023 10:00:00',
+            'photoCertificat' => 'boucle_oreille_emeraude.jpg',
         ],
         [
             'nom' => 'Boucles d\'oreille saphir',
@@ -89,6 +97,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => true,
             'photo' => 'boucle_oreille_saphir.jpg',
             'vente' => 'vente_03/05/2024 10:00:00',
+            'photoCertificat' => 'boucle_oreille_saphir.jpg',
         ],
         [
             'nom' => 'Collier multi-pierre',
@@ -105,6 +114,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => false,
             'photo' => 'collier_1.jpg',
             'vente' => 'vente_03/05/2024 10:00:00',
+            'photoCertificat' => '',
         ],
         [
             'nom' => 'Collier rubis et diamant',
@@ -121,6 +131,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => true,
             'photo' => 'collier_2.jpg',
             'vente' => 'vente_03/05/2024 10:00:00',
+            'photoCertificat' => 'collier_2.jpg',
         ],
         [
             'nom' => 'Collier grenat et diamant',
@@ -137,6 +148,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             'certificat' => true,
             'photo' => 'collier_3.jpg',
             'vente' => 'vente_03/05/2024 10:00:00',
+            'photoCertificat' => 'collier_3.jpg',
         ],
     ];
     public function load(ObjectManager $manager): void
@@ -144,6 +156,8 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::LOTS as $data) {
             $lot = new Lot();
             $lot->setNom($data['nom']);
+            $slug = $this->slugger->slug($data['nom']);
+            $lot->setSlug($slug);
             $lot->setLotNumero($data['lotNumero']);
             $lot->setDescription($data['description']);
             $lot->setEstimationBasse($data['estimationBasse']);
@@ -156,6 +170,7 @@ class LotFixtures extends Fixture implements DependentFixtureInterface
             $lot->setPierre($data['pierre']);
             $lot->setCertificat($data['certificat']);
             $lot->setPhoto($data['photo']);
+            $lot->setPhotoCertificat($data['photoCertificat']);
             $lot->setVente($this->getReference($data['vente']));
             $manager->persist($lot);
         }
